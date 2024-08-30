@@ -42,7 +42,7 @@
       <div class="logo"><a href="{{ url('/') }}"><img src="{{ asset('images/logo_baner.png') }}" alt=""></a></div>
       <div class="account">
         <div>
-        <a href="{{ url('account') }}">
+        <a href="{{ route('account') }}">
             <i class="fa-solid fa-user"></i>
         </a>
         </div>
@@ -84,7 +84,7 @@
         </a>
 
         <a class="card" href="{{ url('chercher-annonce') }}">
-          <div class="card__background" style="background-image: url({{ asset('/images/fete.jpg') }})"></div>
+          <div class="card__background" style="background-image: url({{ asset('/images/fete.jfif') }})"></div>
           <div class="card__content">
             <p class="card__category">CATÉGORIE</p>
             <h3 class="card__heading">Fête</h3>
