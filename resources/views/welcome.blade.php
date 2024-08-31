@@ -9,7 +9,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
-  <title>Aji krii</title>
+  <title>Aji kri</title>
   <link rel="icon" type="image/x-icon" href="{{ asset('images/logo.png') }}">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 
@@ -58,7 +58,7 @@
         <div id="text">Le 1er site au Maroc</div>
         <a class="bottom-btn" href="#categorie"><i class="fa-solid fa-circle-chevron-down"></i></a>
         <div class="service">
-          <a href="{{ url('postez-test') }}" class="postez-btn">Postez une annonce</a>
+          <a href="{{ url('create') }}" class="postez-btn">Postez une annonce</a>
           <a href="{{ url('chercher-annonce') }}" class="chercher-btn">Chercher une annonce</a>
         </div>
       </div>
