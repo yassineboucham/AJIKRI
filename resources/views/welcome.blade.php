@@ -59,7 +59,7 @@
         <a class="bottom-btn" href="#categorie"><i class="fa-solid fa-circle-chevron-down"></i></a>
         <div class="service">
           <a href="{{ url('create') }}" class="postez-btn">Postez une annonce</a>
-          <a href="{{ url('chercher-annonce') }}" class="chercher-btn">Chercher une annonce</a>
+          <a href="{{ url('announcement') }}" class="chercher-btn">Chercher une annonce</a>
         </div>
       </div>
 
