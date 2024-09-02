@@ -99,7 +99,7 @@
                       <p class="font-italic mb-1">Lot socoma 1 Marrakech</p>
                     </div>
                   </div>
-                    <button class="btn" style="background-color: #fc4331; color: white;" type="button">Voir toutes les annonces</button>
+                    <a href="{{ route('announces') }}" class="btn" style="background-color: #fc4331; color: white;">Voir toutes les annonces</a>
                 </div>
               </div>
             </div>

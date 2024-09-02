@@ -1,0 +1,15 @@
+.btn-primary {
+    background-color: #fc4331;
+    border-color: #fc4331;
+}
+.btn-primary:hover {
+    background-color: #e14f2a;
+    border-color: #e14f2a;
+}
+.form-switch {
+/* background: rgba(255, 255, 255, 0.5);  */
+backdrop-filter: blur(10px); /* Apply blur effect */
+}
+.form-check-label {
+    background: rgba(255, 255, 255, 0.5);
+}

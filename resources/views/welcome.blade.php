@@ -68,14 +68,14 @@
     <section class="hero-section" id="categorie">
       <h1>Catégorie</h1>
       <div class="card-grid">
-        <a class="card" href="{{ url('chercher-annonce') }}">
+        <a class="card" href="{{ url('announcement') }}">
           <div class="card__background" style="background-image: url({{ asset('images/voiture-dans-parking.jpg') }})"></div>
           <div class="card__content">
             <p class="card__category">CATÉGORIE</p>
             <h3 class="card__heading">Véhicule</h3>
           </div>
         </a>
-        <a class="card" href="{{ url('chercher-annonce') }}">
+        <a class="card" href="{{ url('announcement') }}">
           <div class="card__background" style="background-image: url({{ asset('images/riad.jpg') }})"></div>
           <div class="card__content">
             <p class="card__category">CATÉGORIE</p>
@@ -83,7 +83,7 @@
           </div>
         </a>
 
-        <a class="card" href="{{ url('chercher-annonce') }}">
+        <a class="card" href="{{ url('announcement') }}">
           <div class="card__background" style="background-image: url({{ asset('/images/fete.jfif') }})"></div>
           <div class="card__content">
             <p class="card__category">CATÉGORIE</p>

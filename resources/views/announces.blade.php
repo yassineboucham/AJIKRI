@@ -132,10 +132,19 @@
             <div class="card-body">
               <h5 class="card-title" style="display: inline;">Card title vehicle</h5>
               <p class="card-text Ville_Secteur">Marrakech/Tensift</p>
-              <div style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center;"><div style="border-radius: 50%; width: 10px; height: 10px; background-color: green; margin-right: 5px;"></div><p class="card-text dispo" style="color: green; margin: 0; font-size: 12px;">Disponible</p></div>
+              <div style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center; margin-right: 5px;">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" onchange="updateAvailability(this)" checked>
+                    <label class="form-check-label" style="color: green;">Disponible</label>
+                </div>
+            </div>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
               <p class="card-text price">Prix: 100 Dhs/h</p>
               <a href="#" class="btn btn-primary">Plus d'informations</a>
+            <div class="button-group" style="margin-top: 10px;">
+                <button class="btn btn-danger" onclick="deleteCard(this)">Supprimer</button>
+                <button class="btn btn-warning" onclick="editCard(this)">Modifier</button>
+            </div>
             </div>
           </div>
 
@@ -175,10 +184,19 @@
             <div class="card-body">
               <h5 class="card-title" style="display: inline;">Card title vehicle</h5>
               <p class="card-text Ville_Secteur">Tanger/Achakar</p>
-              <div style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center;"><div style="border-radius: 50%; width: 10px; height: 10px; background-color: green; margin-right: 5px;"></div><p class="card-text dispo" style="color: green; margin: 0; font-size: 12px;">Disponible</p></div>
+              <div style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center; margin-right: 5px;">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked1" onchange="updateAvailability(this)" checked>
+                    <label class="form-check-label" style="color: green;">Disponible</label>
+                </div>
+            </div>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
               <p class="card-text price">Prix: 500 Dhs/h</p>
               <a href="#" class="btn btn-primary">Plus d'informations</a>
+              <div class="button-group" style="margin-top: 10px;">
+                <button class="btn btn-danger" onclick="deleteCard(this)">Supprimer</button>
+                <button class="btn btn-warning" onclick="editCard(this)">Modifier</button>
+               </div>
             </div>
           </div>
 
@@ -218,10 +236,20 @@
             <div class="card-body">
               <h5 class="card-title" style="display: inline;">Card title moto</h5>
               <p class="card-text Ville_Secteur">Marrakech/Tensift</p>
-              <div style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center;"><div style="border-radius: 50%; width: 10px; height: 10px; background-color: red; margin-right: 5px;"></div><p class="card-text dispo" style="color: red; margin: 0; font-size: 12px;">Indisponible</p></div>
+              <div style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center; margin-right: 5px;">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked2" onchange="updateAvailability(this)" checked>
+                    <label class="form-check-label" style="color: green;">Disponible</label>
+                </div>
+            </div>
+
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
               <p class="card-text price">Prix: 1300 Dhs/h</p>
               <a href="#" class="btn btn-primary">Plus d'informations</a>
+              <div class="button-group" style="margin-top: 10px;">
+                <button class="btn btn-danger" onclick="deleteCard(this)">Supprimer</button>
+                <button class="btn btn-warning" onclick="editCard(this)">Modifier</button>
+            </div>
             </div>
           </div>
 
@@ -261,10 +289,20 @@
             <div class="card-body">
               <h5 class="card-title" style="display: inline;">Card title fete</h5>
               <p class="card-text Ville_Secteur">Marrakech/Tensift</p>
-              <div style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center;"><div style="border-radius: 50%; width: 10px; height: 10px; background-color: green; margin-right: 5px;"></div><p class="card-text dispo" style="color: green; margin: 0; font-size: 12px;">Disponible</p></div>
+              <div style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center; margin-right: 5px;">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked3" onchange="updateAvailability(this)" checked>
+                    <label class="form-check-label" style="color: green;">Disponible</label>
+                </div>
+            </div>
+
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
               <p class="card-text price">Prix: 200 Dhs/h</p>
               <a href="#" class="btn btn-primary">Plus d'informations</a>
+              <div class="button-group" style="margin-top: 10px;">
+                <button class="btn btn-danger" onclick="deleteCard(this)">Supprimer</button>
+                <button class="btn btn-warning" onclick="editCard(this)">Modifier</button>
+            </div>
             </div>
           </div>
 
@@ -304,10 +342,20 @@
             <div class="card-body">
               <h5 class="card-title" style="display: inline;">Card title maison</h5>
               <p class="card-text Ville_Secteur">Marrakech/Tensift</p>
-              <div style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center;"><div style="border-radius: 50%; width: 10px; height: 10px; background-color: green; margin-right: 5px;"></div><p class="card-text dispo" style="color: green; margin: 0; font-size: 12px;">Disponible</p></div>
+              <div style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center; margin-right: 5px;">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked4" onchange="updateAvailability(this)" checked>
+                    <label class="form-check-label" style="color: green;">Disponible</label>
+                </div>
+            </div>
+
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
               <p class="card-text price">Prix: 10000 Dhs/h</p>
               <a href="#" class="btn btn-primary">Plus d'informations</a>
+              <div class="button-group" style="margin-top: 10px;">
+                <button class="btn btn-danger" onclick="deleteCard(this)">Supprimer</button>
+                <button class="btn btn-warning" onclick="editCard(this)">Modifier</button>
+            </div>
             </div>
           </div>
     </section>
@@ -326,7 +374,6 @@
   <script src="{{ asset('/js/announce.js') }}"></script>
   <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
 </body>
 
 </html>
