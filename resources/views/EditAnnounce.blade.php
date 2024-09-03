@@ -64,58 +64,14 @@
                     <option value="autre">Autre</option>
                 </select>
             </div>
-
-            <div class="mb-3" id="vehicleOptions" style="display: none;">
-                <label for="vehicleType" class="form-label">Type de véhicule</label>
-                <select class="form-select" id="vehicleType">
-                    <option value="">Sélectionnez un type</option>
-                    <option value="voiture">Voiture</option>
-                    <option value="moto">Moto</option>
-                </select>
-            </div>
-
-            <div class="mb-3" id="motoOptions" style="display: none;">
-                <label for="motoType" class="form-label">Type de moto</label>
-                <select class="form-select" id="motoType">
-                    <option value="">Sélectionnez un type</option>
-                    <option value="moto50cc">Moto 50cc</option>
-                    <option value="motoAvecPermis">Moto avec permis</option>
-                    <option value="quad">Quad</option>
-                    <option value="autre">Autre</option>
-                </select>
-            </div>
-
-            <div class="mb-3" id="houseOptions" style="display: none;">
-                <label for="houseType" class="form-label">Type de maison</label>
-                <select class="form-select" id="houseType">
-                    <option value="">Sélectionnez un type</option>
-                    <option value="hotel">Hôtel</option>
-                    <option value="riad">Riad</option>
-                    <option value="appartement">Appartement</option>
-                    <option value="villa">Villa</option>
-                    <option value="autre">Autre</option>
-                </select>
-            </div>
-
-            <div class="mb-3" id="partyOptions" style="display: none;">
-                <label for="partyType" class="form-label">Type de fête</label>
-                <select class="form-select" id="partyType">
-                    <option value="">Sélectionnez un type</option>
-                    <option value="salleFete">Salle des fêtes</option>
-                    <option value="costumeHomme">Costume homme</option>
-                    <option value="costumeFemme">Costume femme</option>
-                    <option value="autre">Autre</option>
-                </select>
-            </div>
-
             <div class="mb-3">
                 <label for="title" class="form-label">Titre de l'annonce</label>
-                <input type="text" class="form-control" id="title" placeholder="Titre de l'annonce" required>
+                <input type="text" class="form-control" id="title" placeholder="Titre de l'annonce"  value="Card title vehicle" required>
               </div>
               <div class="mb-3">
                 <label for="prix" class="form-label">Prix de location par temps</label>
                 <div class="input-group mb-3">
-                    <input type="number" class="form-control" id="prix" placeholder="Prix de location par temps" required>
+                    <input type="number" class="form-control" id="prix" placeholder="Prix de location par temps" value="1000" required>
                     <select class="form-select" id="currency" required>
                         <option value="derham" selected>Dirham</option>
                         <option value="euro">Euro</option>
@@ -132,8 +88,8 @@
                 <div class="mb-3">
                     <label for="timeRange" class="form-label">Plage de temps (min-max)</label>
                     <div class="input-group mb-3">
-                        <input type="number" class="form-control" id="minTime" placeholder="Temps min" required>
-                        <input type="number" class="form-control" id="maxTime" placeholder="Temps max" required>
+                        <input type="number" class="form-control" id="minTime" placeholder="Temps min" value="30" required>
+                        <input type="number" class="form-control" id="maxTime" placeholder="Temps max" value="60" required>
                     </div>
                 </div>
 
@@ -141,7 +97,7 @@
                     <label for="citySelect" class="form-label">Choisir la ville</label>
                     <select class="form-select" id="citySelect" required>
                         <option value="">Sélectionnez une ville</option>
-                        <option value="marrakech">Marrakech</option>
+                        <option value="marrakech" selected>Marrakech</option>
                         <option value="casablanca">Casablanca</option>
                         <option value="rabat">Rabat</option>
                         <option value="agadir">Agadir</option>
@@ -153,7 +109,7 @@
                     <label for="sectorSelect" class="form-label">Choisir le secteur</label>
                     <select class="form-select" id="sectorSelect">
                         <option value="">Sélectionnez un secteur</option>
-                        <option value="centre">Centre</option>
+                        <option value="centre" selected>Centre</option>
                         <option value="banlieue">Banlieue</option>
                         <option value="quartierHistorique">Quartier Historique</option>
                     </select>
@@ -161,26 +117,26 @@
               </div>
             <div class="mb-3">
               <label for="validationTextarea" class="form-label">Description</label>
-              <textarea class="form-control" id="validationTextarea" placeholder="Description de l'annonce"></textarea>
+              <textarea class="form-control" id="validationTextarea" placeholder="Description de l'annonce" value="Some quick example text to build on the card title and make up the bulk of the card's content.">Some quick example text to build on the card title and make up the bulk of the card's content.</textarea>
             </div>
 
             <div class="container">
                 <div class="row">
                   <div class="col">
                     <div class="mb-4 d-flex justify-content-center">
-                        <img id="selectedImage1" src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
+                        <img id="selectedImage1" src="images/img2.jpg"
                         alt="example placeholder" style="width: 200px;" />
                     </div>
                     <div class="d-flex justify-content-center">
                         <div data-mdb-ripple-init class="btn" style="background-color: #ff3d00; color: white; border-radius: 0.25rem;">
                             <label class="form-label m-1" for="customFile1">Choose file</label>
-                            <input type="file" class="form-control d-none" id="customFile1" onchange="displaySelectedImage(event, 'selectedImage1')" />
+                            <input type="file" class="form-control d-none" id="customFile1"  onchange="displaySelectedImage(event, 'selectedImage1')" />
                         </div>
                     </div>
                   </div>
                   <div class="col">
                     <div class="mb-4 d-flex justify-content-center">
-                        <img id="selectedImage2" src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
+                        <img id="selectedImage2" src="images/slideshow1.png"
                         alt="example placeholder" style="width: 200px;" />
                     </div>
                     <div class="d-flex justify-content-center">
@@ -192,7 +148,7 @@
                   </div>
                   <div class="col">
                     <div class="mb-4 d-flex justify-content-center">
-                        <img id="selectedImage3" src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
+                        <img id="selectedImage3" src="images/voiture-dans-parking.jpg"
                         alt="example placeholder" style="width: 200px;" />
                     </div>
                     <div class="d-flex justify-content-center">
@@ -204,7 +160,7 @@
                   </div>
                   <div class="col">
                     <div class="mb-4 d-flex justify-content-center">
-                        <img id="selectedImage4" src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
+                        <img id="selectedImage4" src="images/signin-bg.jpeg"
                         alt="example placeholder" style="width: 200px;" />
                     </div>
                     <div class="d-flex justify-content-center">

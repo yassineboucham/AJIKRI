@@ -34,7 +34,7 @@
 
 
       <a href="{{ url('/') }}">Acceuil</a>
-      <a href="{{ url('connection-aji-kri') }}">Se connecter</a>
+      <a href="{{ route('login') }}">Se connecter</a>
       <a href="{{ url('inscription2') }}">S'inscrire</a>
 
     </div>
@@ -98,7 +98,12 @@
     </section>
 
     <section class="h-100 gradient-custom-2 row" >
-        <div class="card" style="width: 18rem; margin: 30px;" data-category="vehicle">
+        <div class="card" style="width: 18rem; margin: 30px;" data-category="vehicle"
+             data-title="Card title vehicle"
+             data-price="100 Dhs/h"
+             data-ville="Marrakech/Tensift"
+             data-description="Some quick example text to build on the card title and make up the bulk of the card's content."
+             data-images='["{{ asset('images/img2.jpg') }}", "{{ asset('images/slideshow1.png') }}", "{{ asset('images/voiture-dans-parking.jpg') }}", "{{ asset('images/signin-bg.jpeg') }}"]'>
             <div id="carouselExampleIndicators" class="carousel slide">
                 <div class="carousel-indicators">
                   <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -135,7 +140,7 @@
               <div style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center; margin-right: 5px;">
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" onchange="updateAvailability(this)" checked>
-                    <label class="form-check-label" style="color: green;">Disponible</label>
+                    <label class="form-check-label dispo" style="color: green;">Disponible</label>
                 </div>
             </div>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -150,7 +155,12 @@
 
           {{-- 1.1 --}}
 
-        <div class="card" style="width: 18rem; margin: 30px;" data-category="vehicle">
+        <div class="card" style="width: 18rem; margin: 30px;" data-category="vehicle"
+             data-title="Card title vehicle"
+             data-price="500 Dhs/h"
+             data-ville="Tanger/Achakar"
+             data-description="Some quick example text to build on the card title and make up the bulk of the card's content."
+             data-images='["{{ asset('images/img2.jpg') }}", "{{ asset('images/slideshow1.png') }}", "{{ asset('images/voiture-dans-parking.jpg') }}", "{{ asset('images/signin-bg.jpeg') }}"]'>
             <div id="carouselExampleIndicators" class="carousel slide">
                 <div class="carousel-indicators">
                   <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -187,7 +197,7 @@
               <div style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center; margin-right: 5px;">
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked1" onchange="updateAvailability(this)" checked>
-                    <label class="form-check-label" style="color: green;">Disponible</label>
+                    <label class="form-check-label dispo" style="color: green;">Disponible</label>
                 </div>
             </div>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -202,7 +212,12 @@
 
           {{-- 2 --}}
 
-          <div class="card" style="width: 18rem; margin: 30px;" data-category="moto">
+          <div class="card" style="width: 18rem; margin: 30px;" data-category="moto"
+               data-title="Card title moto"
+               data-price="1300 Dhs/h"
+               data-ville="Marrakech/Tensift"
+               data-description="Some quick example text to build on the card title and make up the bulk of the card's content."
+               data-images='["{{ asset('images/img2.jpg') }}", "{{ asset('images/slideshow1.png') }}", "{{ asset('images/voiture-dans-parking.jpg') }}", "{{ asset('images/signin-bg.jpeg') }}"]'>
             <div id="carouselExampleIndicators1" class="carousel slide">
                 <div class="carousel-indicators">
                   <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -239,7 +254,7 @@
               <div style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center; margin-right: 5px;">
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked2" onchange="updateAvailability(this)" checked>
-                    <label class="form-check-label" style="color: green;">Disponible</label>
+                    <label class="form-check-label dispo" style="color: green;">Disponible</label>
                 </div>
             </div>
 
@@ -255,7 +270,12 @@
 
           {{-- 3 --}}
 
-          <div class="card" style="width: 18rem; margin: 30px;" data-category="fete">
+          <div class="card" style="width: 18rem; margin: 30px;" data-category="fete"
+               data-title="Card title fete"
+               data-price="200 Dhs/h"
+               data-ville="Marrakech/Tensift"
+               data-description="Some quick example text to build on the card title and make up the bulk of the card's content."
+               data-images='["{{ asset('images/img2.jpg') }}", "{{ asset('images/slideshow1.png') }}", "{{ asset('images/voiture-dans-parking.jpg') }}", "{{ asset('images/signin-bg.jpeg') }}"]'>
             <div id="carouselExampleIndicators2" class="carousel slide">
                 <div class="carousel-indicators">
                   <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -292,7 +312,7 @@
               <div style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center; margin-right: 5px;">
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked3" onchange="updateAvailability(this)" checked>
-                    <label class="form-check-label" style="color: green;">Disponible</label>
+                    <label class="form-check-label dispo" style="color: green;">Disponible</label>
                 </div>
             </div>
 
@@ -308,7 +328,12 @@
 
           {{-- 4 --}}
 
-          <div class="card" style="width: 18rem; margin: 30px;" data-category="maison">
+          <div class="card" style="width: 18rem; margin: 30px;" data-category="maison"
+               data-title="Card title maison"
+               data-price="10000 Dhs/h"
+               data-ville="Marrakech/Tensift"
+               data-description="Some quick example text to build on the card title and make up the bulk of the card's content."
+               data-images='["{{ asset('images/img2.jpg') }}", "{{ asset('images/slideshow1.png') }}", "{{ asset('images/voiture-dans-parking.jpg') }}", "{{ asset('images/signin-bg.jpeg') }}"]'>
             <div id="carouselExampleIndicators4" class="carousel slide">
                 <div class="carousel-indicators">
                   <button type="button" data-bs-target="#carouselExampleIndicators4" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -345,7 +370,7 @@
               <div style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center; margin-right: 5px;">
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked4" onchange="updateAvailability(this)" checked>
-                    <label class="form-check-label" style="color: green;">Disponible</label>
+                    <label class="form-check-label dispo" style="color: green;">Disponible</label>
                 </div>
             </div>
 
@@ -374,6 +399,33 @@
   <script src="{{ asset('/js/announce.js') }}"></script>
   <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <script>
+  function editCard(button) {
+      const card = button.closest('.card');
+      const title = card.getAttribute('data-title');
+      const price = card.getAttribute('data-price');
+      const ville = card.getAttribute('data-ville');
+      const description = card.getAttribute('data-description');
+      const images = JSON.parse(card.getAttribute('data-images'));
+
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = '{{ route('editannounce') }}';
+
+      form.innerHTML = `
+          @csrf
+          <input type="hidden" name="title" value="${title}">
+          <input type="hidden" name="price" value="${price}">
+          <input type="hidden" name="ville" value="${ville}">
+          <input type="hidden" name="description" value="${description}">
+          <input type="hidden" name="images" value='${JSON.stringify(images)}'>
+      `;
+
+      document.body.appendChild(form);
+      form.submit();
+  }
+  </script>
 </body>
 
 </html>

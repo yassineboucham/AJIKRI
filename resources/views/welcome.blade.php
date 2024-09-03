@@ -33,7 +33,7 @@
 
 
       <a href="{{ url('/') }}">Acceuil</a>
-      <a href="{{ url('connection-aji-kri') }}">Se connecter</a>
+      <a href="{{ route('login') }}">Se connecter</a>
       <a href="{{ url('inscription2') }}">S'inscrire</a>
 
     </div>
