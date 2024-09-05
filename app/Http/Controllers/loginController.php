@@ -8,7 +8,6 @@ class loginController extends Controller
 {
     public function login()
     {
-        // Your logic to handle the edit announcement
         return view('login');
     }
 }

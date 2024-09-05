@@ -78,8 +78,8 @@
 
       <a href="{{ url('/') }}">Acceuil</a>
       <a href="{{ route('login') }}">Se connecter</a>
-      <a href="{{ url('inscription2') }}">S'inscrire</a>
-
+      <a href="{{ route('singup') }}">S'inscrire</a>
+      <a href="{{ url('editprofile') }}">Edit Profile</a>
     </div>
     <nav>
       <div class="mobile-menu"></div>
@@ -117,7 +117,6 @@
                     <input type="password" id="typePasswordX" class="form-control form-control-lg" placeholder="Entrez votre mot de passe" required style="font-family: Arial, sans-serif;" />
                     <input type="checkbox" onclick="this.previousElementSibling.type = this.checked ? 'text' : 'password'"> Afficher le mot de passe
                 </div>
-
                 <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Mot de passe oublie?</a></p>
 
                 <button class="btn btn-outline-light btn-lg px-5" type="submit">Connection</button>
@@ -145,6 +144,7 @@
   <script type="text/javascript" src="js/mdb.min.js"></script>
   <!-- Custom scripts -->
   <script type="text/javascript"></script>
+
 </body>
 
 </html>

@@ -35,8 +35,8 @@
 
       <a href="{{ url('/') }}">Acceuil</a>
       <a href="{{ route('login') }}">Se connecter</a>
-      <a href="{{ url('inscription2') }}">S'inscrire</a>
-
+      <a href="{{ route('singup') }}">S'inscrire</a>
+      <a href="{{ url('editprofile') }}">Edit Profile</a>
     </div>
     <nav>
       <div class="mobile-menu"></div>
@@ -62,9 +62,9 @@
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
                       alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
                       style="width: 150px; z-index: 1">
-                    <button  type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-dark text-body" data-mdb-ripple-color="dark" style="z-index: 1;">
-                      Edit profile
-                    </button>
+                    <a href="{{ route('editprofile') }}" class="btn btn-outline-dark text-body" style="z-index: 1;">
+                      Modifier le profil
+                    </a>
                   </div>
                   <div class="ms-3" style="margin-top: 110px;">
                     <h5>Yassine Boucham</h5>

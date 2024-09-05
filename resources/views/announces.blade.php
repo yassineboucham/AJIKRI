@@ -35,7 +35,8 @@
 
       <a href="{{ url('/') }}">Acceuil</a>
       <a href="{{ route('login') }}">Se connecter</a>
-      <a href="{{ url('inscription2') }}">S'inscrire</a>
+      <a href="{{ route('singup') }}">S'inscrire</a>
+      <a href="{{ url('editprofile') }}">Edit Profile</a>
 
     </div>
     <nav>
