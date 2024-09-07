@@ -1,58 +1,6 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
-  <title>Aji krii</title>
-  <link rel="icon" type="image/x-icon" href="{{ asset('images/logo.png') }}">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
-
-</head>
-
-<body>
-
-  <div class="container">
-
-    <label class="mobile-label-toggle" for="toggle">
-      <div class="mobile-menu">
-        <div class="toggler">
-          <i class="fa-solid fa-bars"></i>
-        </div>
-      </div>
-
-
-    </label>
-    <input type="checkbox" id="toggle">
-    <div class="toggle-menu">
-
-
-      <a href="{{ url('/') }}">Acceuil</a>
-      <a href="{{ route('login') }}">Se connecter</a>
-      <a href="{{ route('singup') }}">S'inscrire</a>
-      <a href="{{ url('editprofile') }}">Edit Profile</a>
-    </div>
-    <nav>
-      <div class="mobile-menu"></div>
-      <div class="logo"><a href="{{ url('/') }}"><img src="{{ asset('images/logo_baner.png') }}" alt=""></a></div>
-      <div class="account">
-        <div>
-        <a href="{{ route('account') }}">
-            <i class="fa-solid fa-user"></i>
-        </a>
-        </div>
-      </div>
-
-    </nav>
-
-
-    <section class="h-100 gradient-custom-2">
+@extends('layout')
+@section('content')
+<section class="h-100 gradient-custom-2">
         <div class="container py-5 h-100">
           <div class="row d-flex justify-content-center">
             <div class="col col-lg-9 col-xl-8">
@@ -106,10 +54,9 @@
           </div>
         </div>
       </section>
+@endsection
 
-  </div>
-
-
+{{--
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
     crossorigin="anonymous"></script>
@@ -122,4 +69,4 @@
 
 </body>
 
-</html>
+</html> --}}

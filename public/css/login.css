@@ -1,0 +1,28 @@
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #6a11cb;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgb(253, 83, 26), #ff4800);
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgb(238, 71, 10), rgba(243, 176, 134, 0.826))
+  }
+
+  button.btn.btn-outline-light.btn-lg.px-5 {
+    border: none;
+    background-color: #ed4112;
+    box-shadow: 0 0 6px rgb(252 209 190 / 91%);
+    color: #ffffff;
+    border: 1px solid white;
+    border-radius: 5px;
+    transition: 0.5s;
+  }
+
+  button.btn.btn-outline-light.btn-lg.px-5:hover {
+    background-color: #ffffff;
+    color: #ff4800;
+    border-color: #ff4800;
+
+  transform: scale(1.1);
+  }
