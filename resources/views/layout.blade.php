@@ -14,7 +14,8 @@
     <link rel="stylesheet" href="{{ asset('css/announce.css') }}">
     <link rel="stylesheet" href="{{ asset('css/editprofil.css') }}">
     <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
-  <title>Aji kri</title>
+    <link rel="stylesheet" href="{{ asset('css/moreinfo.css') }}">
+  <title>@yield('title')</title>
   <link rel="icon" type="image/x-icon" href="{{ asset('images/logo.png') }}">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
 
@@ -67,6 +68,7 @@
   <script src="{{ asset('/js/slideshow.js') }}"></script>
   <script src="{{ asset('/js/announce.js') }}"></script>
   <script src="{{ asset('/js/create.js') }}"></script>
+  <script src="{{ asset('/js/moreinfo.js') }}"></script>
   <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
 
 </body>

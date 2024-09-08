@@ -1,5 +1,5 @@
 @extends('layout')
-
+@section('title', 'Edit Announce')
 @section('content')
     <section style="margin-top:100px;padding:0">
         <form class="was-validated">

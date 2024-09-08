@@ -1,5 +1,5 @@
 @extends('layout')
-
+@section('title', 'Edit Profile')
 @section('content')
     <div class="row">
         <div class="col-xl-4">

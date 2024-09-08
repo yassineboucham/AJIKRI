@@ -1,4 +1,5 @@
 @extends('layout')
+@section('title', 'Account')
 @section('content')
 <section class="h-100 gradient-custom-2">
         <div class="container py-5 h-100">

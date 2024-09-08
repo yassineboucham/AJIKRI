@@ -1,4 +1,5 @@
 @extends('layout')
+@section('title', 'Announcement')
 @section('content')
     <section class="container  mb-3" style="margin-top: 100px;">
         <div class="row">

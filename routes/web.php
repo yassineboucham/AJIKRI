@@ -9,7 +9,7 @@ use App\Http\Controllers\EditAnnounceController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\singupController;
 use App\Http\Controllers\editprofileController;
-
+use App\Http\Controllers\MoreinfoController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -29,3 +29,5 @@ Route::get('/login', [loginController::class, 'login'])->name('login');
 Route::get('/singup', [singupController::class, 'singup'])->name('singup');
 
 Route::get('/editprofile', [editprofileController::class, 'editprofile'])->name('editprofile');
+
+Route::get('/moreinfo', [MoreinfoController::class, 'moreinfo'])->name('moreinfo');

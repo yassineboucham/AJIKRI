@@ -1,4 +1,5 @@
 @extends('layout')
+@section('title', 'Announces')
 @section('content')
     <section class="container  mb-3" style="margin-top: 100px;">
         <div class="row">
@@ -95,7 +96,7 @@
             </div>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
               <p class="card-text price">Prix: 100 Dhs/h</p>
-              <a href="#" class="btn btn-primary">Plus d'informations</a>
+              <a href="{{ route('moreinfo') }}" class="btn btn-primary">Plus d'informations</a>
             <div class="button-group" style="margin-top: 10px;">
                 <button class="btn btn-danger" onclick="deleteCard(this)">Supprimer</button>
                 <button class="btn btn-warning" onclick="editCard(this)">Modifier</button>
@@ -152,7 +153,7 @@
             </div>
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
               <p class="card-text price">Prix: 500 Dhs/h</p>
-              <a href="#" class="btn btn-primary">Plus d'informations</a>
+              <a href="{{ route('moreinfo') }}" class="btn btn-primary">Plus d'informations</a>
               <div class="button-group" style="margin-top: 10px;">
                 <button class="btn btn-danger" onclick="deleteCard(this)">Supprimer</button>
                 <button class="btn btn-warning" onclick="editCard(this)">Modifier</button>
@@ -210,7 +211,7 @@
 
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
               <p class="card-text price">Prix: 1300 Dhs/h</p>
-              <a href="#" class="btn btn-primary">Plus d'informations</a>
+              <a href="{{ route('moreinfo') }}" class="btn btn-primary">Plus d'informations</a>
               <div class="button-group" style="margin-top: 10px;">
                 <button class="btn btn-danger" onclick="deleteCard(this)">Supprimer</button>
                 <button class="btn btn-warning" onclick="editCard(this)">Modifier</button>
@@ -220,61 +221,6 @@
 
           {{-- 3 --}}
 
-          <div class="card" style="width: 18rem; margin: 30px;" data-category="fete"
-               data-title="Card title fete"
-               data-price="200 Dhs/h"
-               data-ville="Marrakech/Tensift"
-               data-description="Some quick example text to build on the card title and make up the bulk of the card's content."
-               data-images='["{{ asset('images/img2.jpg') }}", "{{ asset('images/slideshow1.png') }}", "{{ asset('images/voiture-dans-parking.jpg') }}", "{{ asset('images/signin-bg.jpeg') }}"]'>
-            <div id="carouselExampleIndicators2" class="carousel slide">
-                <div class="carousel-indicators">
-                  <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                </div>
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="{{ asset('images/img2.jpg') }}" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="{{ asset('images/slideshow1.png') }}" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="{{ asset('images/voiture-dans-parking.jpg') }}" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="{{ asset('images/signin-bg.jpeg') }}" class="d-block w-100" alt="...">
-                  </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>
-            <div class="card-body">
-              <h5 class="card-title" style="display: inline;">Card title fete</h5>
-              <p class="card-text Ville_Secteur">Marrakech/Tensift</p>
-              <div style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center; margin-right: 5px;">
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked3" onchange="updateAvailability(this)" checked>
-                    <label class="form-check-label dispo" style="color: green;">Disponible</label>
-                </div>
-            </div>
-
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <p class="card-text price">Prix: 200 Dhs/h</p>
-              <a href="#" class="btn btn-primary">Plus d'informations</a>
-              <div class="button-group" style="margin-top: 10px;">
-                <button class="btn btn-danger" onclick="deleteCard(this)">Supprimer</button>
-                <button class="btn btn-warning" onclick="editCard(this)">Modifier</button>
-            </div>
-            </div>
-          </div>
 
           {{-- 4 --}}
 
@@ -326,7 +272,7 @@
 
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
               <p class="card-text price">Prix: 10000 Dhs/h</p>
-              <a href="#" class="btn btn-primary">Plus d'informations</a>
+              <a href="{{ route('moreinfo') }}" class="btn btn-primary">Plus d'informations</a>
               <div class="button-group" style="margin-top: 10px;">
                 <button class="btn btn-danger" onclick="deleteCard(this)">Supprimer</button>
                 <button class="btn btn-warning" onclick="editCard(this)">Modifier</button>
