@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Edit Announce')
+@section('title', 'Modifier l\'annonce')
 @section('content')
     <section style="margin-top:100px;padding:0">
         <form class="was-validated">
@@ -7,23 +7,58 @@
                 <label for="categorySelect" class="form-label">Choisir la catégorie</label>
                 <select class="form-select" id="categorySelect" required>
                     <option value="">Sélectionnez une catégorie</option>
-                    <option value="vehicle">Véhicule</option>
-                    <option value="moto">Moto</option>
+                    <option value="vehicle" selected>Véhicule</option>
                     <option value="maison">Maison et chambre</option>
                     <option value="fete">Fête</option>
                     <option value="autre">Autre</option>
                 </select>
             </div>
+
+            <div class="mb-3" id="vehicleOptions" style="display: none;">
+                <label for="vehicleType" class="form-label">Type de véhicule</label>
+                <select class="form-select" id="vehicleType">
+                    <option value="">Sélectionnez un type</option>
+                    <option value="voiture">Voiture</option>
+                    <option value="moto">Moto</option>
+                    <option value="camion">Camion</option>
+                    <option value="autocar">Autocar</option>
+                    <option value="autre">Autre</option>
+                </select>
+            </div>
+
+            <div class="mb-3" id="houseOptions" style="display: none;">
+                <label for="houseType" class="form-label">Type de maison</label>
+                <select class="form-select" id="houseType">
+                    <option value="">Sélectionnez un type</option>
+                    <option value="hotel">Hôtel</option>
+                    <option value="riad">Riad</option>
+                    <option value="appartement">Appartement</option>
+                    <option value="villa">Villa</option>
+                    <option value="autre">Autre</option>
+                </select>
+            </div>
+
+            <div class="mb-3" id="partyOptions" style="display: none;">
+                <label for="partyType" class="form-label">Type de fête</label>
+                <select class="form-select" id="partyType">
+                    <option value="">Sélectionnez un type</option>
+                    <option value="salleFete">Salle des fêtes</option>
+                    <option value="costumeHomme">Costume homme</option>
+                    <option value="costumeFemme">Costume femme</option>
+                    <option value="autre">Autre</option>
+                </select>
+            </div>
+
             <div class="mb-3">
                 <label for="title" class="form-label">Titre de l'annonce</label>
-                <input type="text" class="form-control" id="title" placeholder="Titre de l'annonce"  value="Card title vehicle" required>
+                <input type="text" class="form-control" id="title" placeholder="Titre de l'annonce"  value="Titre de l'annonce véhicule" required>
               </div>
               <div class="mb-3">
                 <label for="prix" class="form-label">Prix de location par temps</label>
                 <div class="input-group mb-3">
                     <input type="number" class="form-control" id="prix" placeholder="Prix de location par temps" value="1000" required>
                     <select class="form-select" id="currency" required>
-                        <option value="derham" selected>Dirham</option>
+                        <option value="dirham" selected>Dirham</option>
                         <option value="euro">Euro</option>
                         <option value="dollar">Dollar</option>
                     </select>
@@ -67,7 +102,7 @@
               </div>
             <div class="mb-3">
               <label for="validationTextarea" class="form-label">Description</label>
-              <textarea class="form-control" id="validationTextarea" placeholder="Description de l'annonce" value="Some quick example text to build on the card title and make up the bulk of the card's content.">Some quick example text to build on the card title and make up the bulk of the card's content.</textarea>
+              <textarea class="form-control" id="validationTextarea" placeholder="Description de l'annonce" value="Un exemple de texte rapide pour construire sur le titre de la carte et constituer l'essentiel du contenu de la carte.">Un exemple de texte rapide pour construire sur le titre de la carte et constituer l'essentiel du contenu de la carte.</textarea>
             </div>
 
             <div class="container">
@@ -75,11 +110,11 @@
                   <div class="col">
                     <div class="mb-4 d-flex justify-content-center">
                         <img id="selectedImage1" src="images/img2.jpg"
-                        alt="example placeholder" style="width: 200px;" />
+                        alt="exemple de placeholder" style="width: 200px;" />
                     </div>
                     <div class="d-flex justify-content-center">
                         <div data-mdb-ripple-init class="btn" style="background-color: #ff3d00; color: white; border-radius: 0.25rem;">
-                            <label class="form-label m-1" for="customFile1">Choose file</label>
+                            <label class="form-label m-1" for="customFile1">Choisir un fichier</label>
                             <input type="file" class="form-control d-none" id="customFile1"  onchange="displaySelectedImage(event, 'selectedImage1')" />
                         </div>
                     </div>
@@ -87,11 +122,11 @@
                   <div class="col">
                     <div class="mb-4 d-flex justify-content-center">
                         <img id="selectedImage2" src="images/slideshow1.png"
-                        alt="example placeholder" style="width: 200px;" />
+                        alt="exemple de placeholder" style="width: 200px;" />
                     </div>
                     <div class="d-flex justify-content-center">
                         <div data-mdb-ripple-init class="btn" style="background-color: #ff3d00; color: white; border-radius: 0.25rem;">
-                            <label class="form-label m-1" for="customFile2">Choose file</label>
+                            <label class="form-label m-1" for="customFile2">Choisir un fichier</label>
                             <input type="file" class="form-control d-none" id="customFile2" onchange="displaySelectedImage(event, 'selectedImage2')" />
                         </div>
                     </div>
@@ -99,11 +134,11 @@
                   <div class="col">
                     <div class="mb-4 d-flex justify-content-center">
                         <img id="selectedImage3" src="images/voiture-dans-parking.jpg"
-                        alt="example placeholder" style="width: 200px;" />
+                        alt="exemple de placeholder" style="width: 200px;" />
                     </div>
                     <div class="d-flex justify-content-center">
                         <div data-mdb-ripple-init class="btn" style="background-color: #ff3d00; color: white; border-radius: 0.25rem;">
-                            <label class="form-label m-1" for="customFile3">Choose file</label>
+                            <label class="form-label m-1" for="customFile3">Choisir un fichier</label>
                             <input type="file" class="form-control d-none" id="customFile3" onchange="displaySelectedImage(event, 'selectedImage3')" />
                         </div>
                     </div>
@@ -111,11 +146,11 @@
                   <div class="col">
                     <div class="mb-4 d-flex justify-content-center">
                         <img id="selectedImage4" src="images/signin-bg.jpeg"
-                        alt="example placeholder" style="width: 200px;" />
+                        alt="exemple de placeholder" style="width: 200px;" />
                     </div>
                     <div class="d-flex justify-content-center">
                         <div data-mdb-ripple-init class="btn" style="background-color: #ff3d00; color: white; border-radius: 0.25rem;">
-                            <label class="form-label m-1" for="customFile4">Choose file</label>
+                            <label class="form-label m-1" for="customFile4">Choisir un fichier</label>
                             <input type="file" class="form-control d-none" id="customFile4" onchange="displaySelectedImage(event, 'selectedImage4')" />
                         </div>
                     </div>
@@ -124,7 +159,7 @@
               </div>
 
             <div class="mb-4 text-center">
-              <button class="btn btn-success btn-lg" type="submit" id="submitButton" disabled style="margin-top: 40px; width: 100%;">Submit Form</button>
+              <button class="btn btn-success btn-lg" type="submit" id="submitButton" disabled style="margin-top: 40px; width: 100%;">Soumettre le formulaire</button>
             </div>
           </form>
     </section>

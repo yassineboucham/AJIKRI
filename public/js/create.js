@@ -1,9 +1,13 @@
 // Sélectionnez une catégorie
-document.getElementById('categorySelect').addEventListener('change', function() {
-    document.getElementById('vehicleOptions').style.display = this.value === 'vehicle' ? 'block' : 'none';
-    document.getElementById('motoOptions').style.display = this.value === 'moto' ? 'block' : 'none';
-    document.getElementById('houseOptions').style.display = this.value === 'maison' ? 'block' : 'none';
-    document.getElementById('partyOptions').style.display = this.value === 'fete' ? 'block' : 'none';
+document.addEventListener('DOMContentLoaded', function() {
+    const categories = JSON.parse(document.getElementById('categoriesData').textContent);
+    const categorySelect = document.getElementById('categorySelect');
+
+    categorySelect.addEventListener('change', function() {
+        categories.forEach(category => {
+            document.getElementById(category.catégorie + 'Options').style.display = this.value === category.catégorie ? 'block' : 'none';
+        });
+    });
 });
 // Choisir la ville
 document.getElementById('citySelect').addEventListener('change', function() {

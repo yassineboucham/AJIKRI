@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Account')
+@section('title', 'Compte')
 @section('content')
 <section class="h-100 gradient-custom-2">
         <div class="container py-5 h-100">
@@ -9,7 +9,7 @@
                 <div class="rounded-top text-white d-flex flex-row" style="background-color: #000; height:200px;">
                   <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;">
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp"
-                      alt="Generic placeholder image" class="img-fluid img-thumbnail mt-4 mb-2"
+                      alt="Image de profil" class="img-fluid img-thumbnail mt-4 mb-2"
                       style="width: 150px; z-index: 1">
                     <a href="{{ route('editprofile') }}" class="btn btn-outline-dark text-body" style="z-index: 1;">
                       Modifier le profil
@@ -17,7 +17,7 @@
                   </div>
                   <div class="ms-3" style="margin-top: 110px;">
                     <h5>Yassine Boucham</h5>
-                    <p>Hello, I am rein a different type of home for just family and students.
+                    <p>Bonjour, je suis un type de maison différent pour juste la famille et les étudiants.
                     </p>
                   </div>
                 </div>
@@ -25,13 +25,13 @@
                   <div class="d-flex justify-content-end text-center py-1 text-body">
                     <div>
                       <p class="mb-1 h5">253</p>
-                      <p class="small text-muted mb-0">Posts</p>
+                      <p class="small text-muted mb-0">Publications</p>
                     </div>
                   </div>
                 </div>
                 <div class="card-body p-4 text-black">
-                  <div class="mb-3  text-body">
-                    <p class="lead fw-normal mb-1">Numéro de télephone</p>
+                  <div class="mb-3 text-body">
+                    <p class="lead fw-normal mb-1">Numéro de téléphone</p>
                     <div class="p-2 bg-body-tertiary">
                       <p class="font-italic mb-1">0766838215</p>
                     </div>
@@ -43,7 +43,7 @@
                     </div>
                   </div>
                   <div class="mb-3 text-body">
-                    <p class="lead fw-normal mb-1">L'address</p>
+                    <p class="lead fw-normal mb-1">Adresse</p>
                     <div class="p-2 bg-body-tertiary">
                       <p class="font-italic mb-1">Lot socoma 1 Marrakech</p>
                     </div>

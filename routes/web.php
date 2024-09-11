@@ -6,27 +6,27 @@ use App\Http\Controllers\CreateController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\AnnouncesController;
 use App\Http\Controllers\EditAnnounceController;
-use App\Http\Controllers\loginController;
-use App\Http\Controllers\singupController;
+use App\Http\Controllers\SingupController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\editprofileController;
 use App\Http\Controllers\MoreinfoController;
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/account', [AccountController::class, 'index'])->name('account');
+Route::get('/account', [AccountController::class, 'account'])->name('account');
 
-Route::get('/create', [CreateController::class, 'create'])->name('create');
+Route::get('/createannounce', [CreateController::class, 'createannounce'])->name('createannounce');
 
 Route::get('/announcement', [AnnouncementController::class, 'announcement'])->name('announcement');
 
-Route::get('/announces', [AnnouncesController::class, 'index'])->name('announces');
+Route::get('/announces', [AnnouncesController::class, 'announces'])->name('announces');
 
 Route::post('/EditAnnounce', [EditAnnounceController::class, 'editannounce'])->name('editannounce');
 
-Route::get('/login', [loginController::class, 'login'])->name('login');
+Route::get('/singup', [SingupController::class, 'singup'])->name('singup');
 
-Route::get('/singup', [singupController::class, 'singup'])->name('singup');
+Route::get('/login', [loginController::class, 'login'])->name('login');
 
 Route::get('/editprofile', [editprofileController::class, 'editprofile'])->name('editprofile');
 

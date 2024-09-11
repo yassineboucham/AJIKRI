@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Singup')
+@section('title', 'Inscription')
 @section('content')
     <section class="min-vh-100 gradient-custom">
         <div class="container py-5 h-100">
@@ -18,7 +18,7 @@
                                 </div>
 
                                 <div class="form-outline form-white mb-4">
-                                    <label class="form-label" for="typeAgencyNameX">Nom d'agence</label>
+                                    <label class="form-label" for="typeAgencyNameX">Nom de l'agence</label>
                                     <input type="text" id="typeAgencyNameX" class="form-control form-control-lg" required />
                                 </div>
 
@@ -43,7 +43,7 @@
                                 </div>
 
                                 <div class="form-outline form-white mb-4">
-                                    <label class="form-label" for="typeCPasswordX">Confirmer mot de passe</label>
+                                    <label class="form-label" for="typeCPasswordX">Confirmer le mot de passe</label>
                                     <input type="password" id="typeCPasswordX" class="form-control form-control-lg" required />
                                 </div>
 

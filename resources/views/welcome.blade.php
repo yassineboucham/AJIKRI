@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 
 <head>
   <meta charset="utf-8">
@@ -25,14 +25,10 @@
           <i class="fa-solid fa-bars"></i>
         </div>
       </div>
-
-
     </label>
     <input type="checkbox" id="toggle">
     <div class="toggle-menu">
-
-
-      <a href="{{ url('/') }}">Acceuil</a>
+      <a href="{{ url('/') }}">Accueil</a>
       <a href="{{ route('login') }}">Se connecter</a>
       <a href="{{ route('singup') }}">S'inscrire</a>
     </div>
@@ -46,24 +42,21 @@
         </a>
         </div>
       </div>
-
     </nav>
-
 
     <section class="body">
       <div id="slideshow">
-        <img src="{{ asset('images/location.jpg') }}" id="slide-img" alt="image1" style="filter: brightness(0.5);">
+        <img src="{{ asset('images/slideshow0.jpg') }}" id="slide-img" alt="image1" style="filter: brightness(0.5);">
         <div class="overlay"></div>
         <div id="text">Le 1er site au Maroc</div>
         <a class="bottom-btn" href="#categorie"><i class="fa-solid fa-circle-chevron-down"></i></a>
         <div class="service">
-          <a href="{{ url('create') }}" class="postez-btn">Postez une annonce</a>
+          <a href="{{ url('createannounce') }}" class="postez-btn">Postez une annonce</a>
           <a href="{{ url('announcement') }}" class="chercher-btn">Chercher une annonce</a>
         </div>
       </div>
-
-
     </section>
+
     <section class="hero-section" id="categorie">
       <h1>Catégorie</h1>
       <div class="card-grid">
@@ -81,7 +74,6 @@
             <h3 class="card__heading">Maison et chambre</h3>
           </div>
         </a>
-
         <a class="card" href="{{ url('announcement') }}">
           <div class="card__background" style="background-image: url({{ asset('/images/fete.jfif') }})"></div>
           <div class="card__content">
@@ -95,40 +87,34 @@
     <footer>
       <div class="footer-container">
         <div class="logo-footer">
-          <img src="{{ asset('images/logo_name.png') }}" alt="Website Logo">
+          <img src="{{ asset('images/logo_name.png') }}" alt="Logo du site">
         </div>
-
       </div>
       <div class="bottom-footer">
-
         <div class="about">
-          <h3>About Us</h3>
-          <p> Location en ligne </p>
+          <h3>À propos de nous</h3>
+          <p>Location en ligne</p>
         </div>
         <div class="contact">
-          <h3>Contact Us</h3>
+          <h3>Contactez-nous</h3>
          <a href="tel:00212674942356"><i class="fa-solid fa-phone"> <span>  0674942356</span></i></a>
          <a href="mailto:admin@ajikri.com" ><i class="fa-solid fas fa-envelope"></i> <span> admin@ajikri.com</span></a>
-
         </div>
         <div class="social-icons">
-          <h3>social media</h3>
+          <h3>Médias sociaux</h3>
           <a href="https://wa.me/0674942356"><i class="fa-brands fa-whatsapp"></i> <span>Whatsapp</span></a>
           <a href="#"><i class="fa-brands fa-facebook"></i> <span>Facebook</span></a>
-          <!-- <a href="#"><i class="fa-solid fa-phone"></i><span></span></a> -->
-          <a href="#"><i class="fa-brands fab fa-youtube"></i> <span>youtube</span></a>
-          <a href="#"><i class="fa-brands fab fa-instagram"></i> <span>instagram</span></a>
+          <a href="#"><i class="fa-brands fab fa-youtube"></i> <span>Youtube</span></a>
+          <a href="#"><i class="fa-brands fab fa-instagram"></i> <span>Instagram</span></a>
         </div>
-
       </div>
       <div class="footer-info">
-        <p>&copy; 2023 Aji kri . All rights reserved.</p>
-        <p>Designed by Aji kri founders<a href="#"> Mohammmed,Zouhair et aguinane </a></p>
+        <p>&copy; 2023 Aji kri. Tous droits réservés.</p>
+        <p>Conçu par les fondateurs d'Aji kri<a href="#"> Mohammed, Zouhair et Aguinane</a></p>
       </div>
     </footer>
 
   </div>
-
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"

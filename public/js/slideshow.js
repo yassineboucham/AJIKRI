@@ -1,5 +1,5 @@
-var images = ["images/location.jpg", "images/slideshow3.png", "images/slideshow4.png"];
-var captionsText = ["Le 1er site au Maroc", "Trouvez votre véhicule", "Et louez-le Facilement"];
+var images = ["images/slideshow1.png", "images/slideshow3.png", "images/slideshow4.png"];
+var captionsText = ["La modernité", "La facilité", "La simplicité"];
 var currentImageIndex = 0;
 var slideImage = document.getElementById("slide-img");
 var captionLocation = document.getElementById("text");
