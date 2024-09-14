@@ -33,4 +33,3 @@ Route::get('/login', [loginController::class, 'login'])->name('login');
 Route::get('/editprofile', [editprofileController::class, 'editprofile'])->name('editprofile');
 
 Route::get('/moreinfo/{id}', [MoreinfoController::class, 'moreinfo'])->name('moreinfo');
-    
