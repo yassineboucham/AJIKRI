@@ -6,9 +6,20 @@ use Illuminate\Http\Request;
 
 class EditAnnounceController extends Controller
 {
+        //data for the createannounce page
+        private static function categorie()
+        {
+            return [
+                ['id' => 1, 'catégorie' => 'vehicle', 'options' => ['voiture', 'moto', 'camion', 'autocar', 'autre']],
+                ['id' => 2, 'catégorie' => 'maison', 'options' => ['Hôtel', 'Riad', 'villa', 'Appartement', 'autre']],
+                ['id' => 3, 'catégorie' => 'fete', 'options' => ['Salle des fêtes', 'Costume homme', 'Costume femme', 'autre']],
+                ['id' => 6, 'catégorie' => 'Autre', 'options' => ['Autre']],
+            ];
+        }
+
     public function editannounce()
     {
-        return view('editannounce');
+        return view('editannounce', ['categories' => self::categorie()]);
     }
 
     public function create()

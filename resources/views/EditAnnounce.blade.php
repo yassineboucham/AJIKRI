@@ -6,48 +6,29 @@
             <div class="mb-3">
                 <label for="categorySelect" class="form-label">Choisir la catégorie</label>
                 <select class="form-select" id="categorySelect" required>
-                    <option value="">Sélectionnez une catégorie</option>
-                    <option value="vehicle" selected>Véhicule</option>
-                    <option value="maison">Maison et chambre</option>
-                    <option value="fete">Fête</option>
-                    <option value="autre">Autre</option>
+                    <option value="vehicle" selected>vehicle</option>
+                    @foreach($categories as $category)
+                        @if ($category['catégorie'] != "vehicle")
+                            <option value="{{ $category['catégorie'] }}">{{ $category['catégorie'] }}</option>
+                        @endif
+                    @endforeach
                 </select>
             </div>
 
-            <div class="mb-3" id="vehicleOptions" style="display: none;">
-                <label for="vehicleType" class="form-label">Type de véhicule</label>
-                <select class="form-select" id="vehicleType">
-                    <option value="">Sélectionnez un type</option>
-                    <option value="voiture">Voiture</option>
-                    <option value="moto">Moto</option>
-                    <option value="camion">Camion</option>
-                    <option value="autocar">Autocar</option>
-                    <option value="autre">Autre</option>
-                </select>
-            </div>
-
-            <div class="mb-3" id="houseOptions" style="display: none;">
-                <label for="houseType" class="form-label">Type de maison</label>
-                <select class="form-select" id="houseType">
-                    <option value="">Sélectionnez un type</option>
-                    <option value="hotel">Hôtel</option>
-                    <option value="riad">Riad</option>
-                    <option value="appartement">Appartement</option>
-                    <option value="villa">Villa</option>
-                    <option value="autre">Autre</option>
-                </select>
-            </div>
-
-            <div class="mb-3" id="partyOptions" style="display: none;">
-                <label for="partyType" class="form-label">Type de fête</label>
-                <select class="form-select" id="partyType">
-                    <option value="">Sélectionnez un type</option>
-                    <option value="salleFete">Salle des fêtes</option>
-                    <option value="costumeHomme">Costume homme</option>
-                    <option value="costumeFemme">Costume femme</option>
-                    <option value="autre">Autre</option>
-                </select>
-            </div>
+            @foreach($categories as $category)
+                <div class="mb-3" id="{{ $category['catégorie'] }}Options" style="display: none;">
+                    <label for="{{ $category['catégorie'] }}Type" class="form-label">Type de {{ strtolower($category['catégorie']) }}</label>
+                    <select class="form-select" id="{{ $category['catégorie'] }}Type">
+                        <option value="">Sélectionnez un type</option>
+                        @foreach($category['options'] as $option)
+                            <option value="{{ strtolower($option) }}">{{ $option }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            @endforeach
+            <script id="categoriesData" type="application/json">
+                {!! json_encode($categories) !!}
+            </script>
 
             <div class="mb-3">
                 <label for="title" class="form-label">Titre de l'annonce</label>

@@ -10,6 +10,7 @@ use App\Http\Controllers\SingupController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\editprofileController;
 use App\Http\Controllers\MoreinfoController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,7 +19,8 @@ Route::get('/account', [AccountController::class, 'account'])->name('account');
 
 Route::get('/createannounce', [CreateController::class, 'createannounce'])->name('createannounce');
 
-Route::get('/announcement', [AnnouncementController::class, 'announcement'])->name('announcement');
+Route::resource('/announcement', AnnouncementController::class);
+
 
 Route::get('/announces', [AnnouncesController::class, 'announces'])->name('announces');
 
@@ -30,4 +32,5 @@ Route::get('/login', [loginController::class, 'login'])->name('login');
 
 Route::get('/editprofile', [editprofileController::class, 'editprofile'])->name('editprofile');
 
-Route::get('/moreinfo', [MoreinfoController::class, 'moreinfo'])->name('moreinfo');
+Route::get('/moreinfo/{id}', [MoreinfoController::class, 'moreinfo'])->name('moreinfo');
+    

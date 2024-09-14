@@ -6,9 +6,23 @@ use Illuminate\Http\Request;
 
 class MoreinfoController extends Controller
 {
-    public function moreinfo()
+    protected $announcementController;
+
+    public function __construct(AnnouncementController $announcementController)
     {
-        return view('moreinfo');
+        $this->announcementController = $announcementController;
+    }
+
+    public function moreinfo($id)
+    {
+        $info = $this->announcementController->AnnouncementInfo();
+        $index = array_search($id, array_column($info, 'id'));
+
+        if ($index !== false) {
+            return view('moreinfo', ['info' => $info[$index]]);
+        } else {
+            return abort(404, 'Announcement not found');
+        }
     }
 
     public function create()

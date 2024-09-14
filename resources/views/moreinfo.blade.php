@@ -37,7 +37,7 @@
       </div>
       <div class="col-md-5">
         <div class="card-body">
-          <h5 class="card-title">Card title vehicle</h5>
+            <h5 class="card-title">{{ $info['tilte'] }}</h5>
           <div style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center;"><div style="border-radius: 50%; width: 10px; height: 10px; background-color: green; margin-right: 5px;"></div><p class="card-text dispo" style="color: green; margin: 0; font-size: 12px;">Disponible</p></div>
           <small class="text-body-secondary">Marrakech/Tensift</small>
           <a href="https://www.google.com/maps/search/?api=1&query=Marrakech/Tensift" target="_blank">
