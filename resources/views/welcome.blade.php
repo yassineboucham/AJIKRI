@@ -51,7 +51,7 @@
         <div id="text">Le 1er site au Maroc</div>
         <a class="bottom-btn" href="#categorie"><i class="fa-solid fa-circle-chevron-down"></i></a>
         <div class="service">
-          <a href="{{ url('createannounce') }}" class="postez-btn">Postez une annonce</a>
+          <a href="{{ route('announcement.create') }}" class="postez-btn">Postez une annonce</a>
           <a href="{{ url('announcement') }}" class="chercher-btn">Chercher une annonce</a>
         </div>
       </div>

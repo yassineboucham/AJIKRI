@@ -43,19 +43,27 @@ class AnnouncementController extends Controller
            ],
         ];
     }
+    private static function categorie()
+    {
+        return [
+            ['id' => 1, 'catégorie' => 'vehicle', 'options' => ['voiture', 'moto', 'camion', 'autocar', 'autre']],
+            ['id' => 2, 'catégorie' => 'maison', 'options' => ['Hôtel', 'Riad', 'villa', 'Appartement', 'autre']],
+            ['id' => 3, 'catégorie' => 'fete', 'options' => ['Salle des fêtes', 'Costume homme', 'Costume femme', 'autre']],
+            ['id' => 6, 'catégorie' => 'Autre', 'options' => ['Autre']],
+        ];
+    }
     public function index()
     {
-        return view('announcement', ['infos' => self::AnnouncementInfo()]);
+        return view('announcement.index', ['infos' => self::AnnouncementInfo()]);
     }
 
     public function create()
     {
-        //
+        return view('announcement.create', ['categories' => self::categorie()]);
     }
 
     public function store(Request $request)
     {
-        // Store the new singup
     }
 
 public function show($id)
@@ -64,8 +72,7 @@ public function show($id)
     $index = array_search($id, array_column($infos, 'id'));
 
     if ($index !== false) {
-        // Debugging to ensure the correct info is passed
-        return view('moreinfo', ['info' => $infos[$index]]);
+        return view('announcement.show', ['info' => $infos[$index]]);
     } else {
         return abort(404, 'Announcement not found');
     }

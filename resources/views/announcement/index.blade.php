@@ -75,7 +75,7 @@
                     </div>
                     <p class="card-text">{{ $info['description'] }}</p>
                     <p class="card-text price">Prix: {{ $info['prix'] }} {{ $info['devis'] }}/{{ $info['temps'] }}</p>
-                    <a href="{{ route('moreinfo', ['id' => $info['id']]) }}" class="btn btn-primary">Plus d'informations</a>
+                    <a href="{{ route('announcement.show', ['announcement' => $info['id']])}}"  class="btn btn-primary">Plus d'informations</a>
                 </div>
             </div>
         @endforeach
