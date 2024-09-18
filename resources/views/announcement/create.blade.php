@@ -2,46 +2,48 @@
 @section('title', 'Créer une Annonce')
 @section('content')
     <section style="margin-top:100px;padding:0">
-        <form class="was-validated" method="post">
+        <form class="was-validated" action="{{route('announcement.store')}}" method="post">
+            @csrf
             <div class="mb-3">
-                <label for="categorySelect" class="form-label">Choisir la catégorie</label>
-                <select class="form-select" id="categorySelect" required>
-                    <option value="">Sélectionnez une catégorie</option>
+                <label for="categorySelect" class="form-label">Select a Category</label>
+                <select class="form-select" id="categorySelect" name="categorie_id" >
+                    <option value="">Select a category</option>
                     @foreach($categories as $category)
-                        <option value="{{ $category['catégorie'] }}">{{ $category['catégorie'] }}</option>
+                        <option value="{{ $category['id'] }}">{{ $category['catégorie'] }}</option>
                     @endforeach
                 </select>
             </div>
 
             @foreach($categories as $category)
                 <div class="mb-3" id="{{ $category['catégorie'] }}Options" style="display: none;">
-                    <label for="{{ $category['catégorie'] }}Type" class="form-label">Type de {{ strtolower($category['catégorie']) }}</label>
-                    <select class="form-select" id="{{ $category['catégorie'] }}Type">
-                        <option value="">Sélectionnez un type</option>
+                    <label for="{{ $category['catégorie'] }}Type" class="form-label">Type of {{ strtolower($category['catégorie']) }}</label>
+                    <select class="form-select" id="{{ $category['id'] }}Type" name="type_id" required>
                         @foreach($category['options'] as $option)
-                            <option value="{{ strtolower($option) }}">{{ $option }}</option>
+                            <option value="{{ $option['id'] }}">{{ $option['name'] }}</option>
                         @endforeach
                     </select>
                 </div>
             @endforeach
+
             <script id="categoriesData" type="application/json">
                 {!! json_encode($categories) !!}
             </script>
 
             <div class="mb-3">
                 <label for="title" class="form-label">Titre de l'annonce</label>
-                <input type="text" class="form-control" id="title" placeholder="Titre de l'annonce" required>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Titre de l'annonce" value="{{ old('title') }}" required>
+
             </div>
             <div class="mb-3">
                 <label for="prix" class="form-label">Prix de location par temps</label>
                 <div class="input-group mb-3">
-                    <input type="number" class="form-control" id="prix" placeholder="Prix de location par temps" required>
-                    <select class="form-select" id="currency" required>
+                    <input type="number" class="form-control" id="prix" name='price' placeholder="Prix de location par temps" required>
+                    <select class="form-select" id="currency" name="devis" required>
                         <option value="derham" selected>Dirham</option>
                         <option value="euro">Euro</option>
                         <option value="dollar">Dollar</option>
                     </select>
-                    <select class="form-select" id="timeUnit" required>
+                    <select class="form-select" id="timeUnit" name="unit_time" required>
                         <option value="minute" selected>minute</option>
                         <option value="heure">heure</option>
                         <option value="jour">jour</option>
@@ -51,14 +53,14 @@
                 <div class="mb-3">
                     <label for="timeRange" class="form-label">Plage de temps (min-max)</label>
                     <div class="input-group mb-3">
-                        <input type="number" class="form-control" id="minTime" placeholder="Temps min" required>
-                        <input type="number" class="form-control" id="maxTime" placeholder="Temps max" required>
+                        <input type="number" class="form-control" id="minTime" name="minimum_time" placeholder="Temps min" required>
+                        <input type="number" class="form-control" id="maxTime" name="max_time" placeholder="Temps max" required>
                     </div>
                 </div>
 
                 <div class="mb-3">
                     <label for="citySelect" class="form-label">Choisir la ville</label>
-                    <select class="form-select" id="citySelect" required>
+                    <select class="form-select" id="citySelect" name="city" required>
                         <option value="">Sélectionnez une ville</option>
                         <option value="marrakech">Marrakech</option>
                         <option value="casablanca">Casablanca</option>
@@ -68,10 +70,10 @@
                     </select>
                 </div>
 
-                <div class="mb-3" id="sectorOptions" style="display: none;">
+                <div class="mb-3" id="sectorOptions" name="sector" style="display: none;">
                     <label for="sectorSelect" class="form-label">Choisir le secteur</label>
-                    <select class="form-select" id="sectorSelect">
-                        <option value="">Sélectionnez un secteur</option>
+                    <select class="form-select" id="sectorSelect" name="sector">
+                        <option value="Autre">Sélectionnez un secteur</option>
                         <option value="centre">Centre</option>
                         <option value="banlieue">Banlieue</option>
                         <option value="quartierHistorique">Quartier Historique</option>
@@ -80,7 +82,7 @@
             </div>
             <div class="mb-3">
                 <label for="validationTextarea" class="form-label">Description</label>
-                <textarea class="form-control" id="validationTextarea" placeholder="Description de l'annonce"></textarea>
+                <textarea class="form-control" id="validationTextarea" name="description" placeholder="Description de l'annonce" required>{{ old('description') }}</textarea>
             </div>
 
             <div class="container">
@@ -93,7 +95,7 @@
                         <div class="d-flex justify-content-center">
                             <div data-mdb-ripple-init class="btn" style="background-color: #ff3d00; color: white; border-radius: 0.25rem;">
                                 <label class="form-label m-1" for="customFile1">Choisir un fichier</label>
-                                <input type="file" class="form-control d-none" id="customFile1" onchange="displaySelectedImage(event, 'selectedImage1')" />
+                                <input type="file" class="form-control d-none" id="customFile1" name="image_urls[]" onchange="displaySelectedImage(event, 'selectedImage1')" />
                             </div>
                         </div>
                     </div>
@@ -105,7 +107,7 @@
                         <div class="d-flex justify-content-center">
                             <div data-mdb-ripple-init class="btn" style="background-color: #ff3d00; color: white; border-radius: 0.25rem;">
                                 <label class="form-label m-1" for="customFile2">Choisir un fichier</label>
-                                <input type="file" class="form-control d-none" id="customFile2" onchange="displaySelectedImage(event, 'selectedImage2')" />
+                                <input type="file" class="form-control d-none" id="customFile2" name="image_urls[]" onchange="displaySelectedImage(event, 'selectedImage2')" />
                             </div>
                         </div>
                     </div>
@@ -117,7 +119,7 @@
                         <div class="d-flex justify-content-center">
                             <div data-mdb-ripple-init class="btn" style="background-color: #ff3d00; color: white; border-radius: 0.25rem;">
                                 <label class="form-label m-1" for="customFile3">Choisir un fichier</label>
-                                <input type="file" class="form-control d-none" id="customFile3" onchange="displaySelectedImage(event, 'selectedImage3')" />
+                                <input type="file" class="form-control d-none" id="customFile3" name="image_urls[]" onchange="displaySelectedImage(event, 'selectedImage3')" />
                             </div>
                         </div>
                     </div>
@@ -129,7 +131,7 @@
                         <div class="d-flex justify-content-center">
                             <div data-mdb-ripple-init class="btn" style="background-color: #ff3d00; color: white; border-radius: 0.25rem;">
                                 <label class="form-label m-1" for="customFile4">Choisir un fichier</label>
-                                <input type="file" class="form-control d-none" id="customFile4" onchange="displaySelectedImage(event, 'selectedImage4')" />
+                                <input type="file" class="form-control d-none" id="customFile4" name="image_urls[]" onchange="displaySelectedImage(event, 'selectedImage4')" />
                             </div>
                         </div>
                     </div>

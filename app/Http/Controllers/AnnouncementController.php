@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Announce;
 
 class AnnouncementController extends Controller
 {
@@ -46,15 +47,15 @@ class AnnouncementController extends Controller
     private static function categorie()
     {
         return [
-            ['id' => 1, 'catégorie' => 'vehicle', 'options' => ['voiture', 'moto', 'camion', 'autocar', 'autre']],
-            ['id' => 2, 'catégorie' => 'maison', 'options' => ['Hôtel', 'Riad', 'villa', 'Appartement', 'autre']],
-            ['id' => 3, 'catégorie' => 'fete', 'options' => ['Salle des fêtes', 'Costume homme', 'Costume femme', 'autre']],
-            ['id' => 6, 'catégorie' => 'Autre', 'options' => ['Autre']],
+            ['id' => 1, 'catégorie' => 'vehicle', 'options' => [['id' => 3, 'name' => 'Sélectionnez un vehicle'], ['id' => 1, 'name' => 'voiture'], ['id' => 2, 'name' => 'moto']]],
+            ['id' => 2, 'catégorie' => 'maison', 'options' => [ ['id' => 8, 'name' => 'Sélectionnez un maison'], ['id' => 4, 'name' => 'Hôtel'], ['id' => 5, 'name' => 'Riad'], ['id' => 6, 'name' => 'villa'], ['id' => 7, 'name' => 'Appartement']]],
+            ['id' => 3, 'catégorie' => 'fete', 'options' => [['id' => 12, 'name' => 'Sélectionnez un fete'], ['id' => 9, 'name' => 'Salle des fêtes'], ['id' => 10, 'name' => 'Costume homme'], ['id' => 11, 'name' => 'Costume femme']]],
+            ['id' => 4, 'catégorie' => 'Autre', 'options' => [['id' => 13, 'name' => 'Autre']]],
         ];
     }
     public function index()
     {
-        return view('announcement.index', ['infos' => self::AnnouncementInfo()]);
+        return view('announcement.index', ['infos' => Announce::all()]);
     }
 
     public function create()
@@ -62,8 +63,27 @@ class AnnouncementController extends Controller
         return view('announcement.create', ['categories' => self::categorie()]);
     }
 
+
     public function store(Request $request)
     {
+        $announcement = new Announce();
+        $announcement->categorie_id = $request->input('categorie_id');
+        $announcement->type_id = $request->input('type_id');
+        $announcement->title = $request->input('title');
+        $announcement->description = $request->input('description');
+        $announcement->price = $request->input('price');
+        $announcement->devis = $request->input('devis');
+        $announcement->unit_time = $request->input('unit_time');
+        $announcement->minimum_time = $request->input('minimum_time');
+        $announcement->max_time = $request->input('max_time');
+        $announcement->city = $request->input('city');
+        $announcement->sector = $request->input('sector');
+        $announcement->image_urls = implode(',', $request->input('image_urls'));
+        $announcement->user_id = 1;
+        $announcement->availability = true;
+        $announcement->save();
+
+        return redirect()->route('announcement.index');
     }
 
 public function show($id)

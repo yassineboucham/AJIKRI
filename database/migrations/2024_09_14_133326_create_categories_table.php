@@ -6,21 +6,15 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('categories', function (Blueprint $table) {
-            $table->unsignedBigInteger('categorie_id')->autoIncrement();
+            $table->unsignedBigInteger('categorie_id')->autoIncrement(); // Should be 'id' for consistency
             $table->string('categorie_Name');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('categories');

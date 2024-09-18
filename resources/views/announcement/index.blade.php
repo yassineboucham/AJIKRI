@@ -51,11 +51,13 @@
             <div class="card" style="width: 18rem; margin: 30px;" data-category="{{ $info['catégorie'] }}">
                 <div id="carouselExampleIndicators{{ $info['id'] }}" class="carousel slide">
                     <div class="carousel-inner">
+                        @if(is_array($info['images']) && count($info['images']) > 0)
                         @foreach($info['images'] as $index => $image)
                             <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                                 <img src="{{ asset($image) }}" class="d-block w-100" alt="...">
                             </div>
                         @endforeach
+                        @endif
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators{{ $info['id'] }}" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

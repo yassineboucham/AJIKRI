@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AccountController;
-use App\Http\Controllers\CreateController;
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\AnnouncesController;
 use App\Http\Controllers\EditAnnounceController;
@@ -15,8 +14,6 @@ Route::get('/', function () {
 });
 
 Route::get('/account', [AccountController::class, 'account'])->name('account');
-
-Route::get('/createannounce', [CreateController::class, 'createannounce'])->name('createannounce');
 
 Route::resource('/announcement', AnnouncementController::class);
 
