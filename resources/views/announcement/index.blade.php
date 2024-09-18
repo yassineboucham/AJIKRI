@@ -3,6 +3,7 @@
 @section('content')
     <section class="container mb-3" style="margin-top: 100px;">
         <div class="row">
+            <!-- Filter by Category -->
             <div class="col mb-3" style="margin-top: 20px;">
                 <label for="filterSelect" class="form-label">Filtrer par catégorie</label>
                 <select class="form-select" id="filterSelect" onchange="filterCards()">
@@ -14,6 +15,7 @@
                 </select>
             </div>
 
+            <!-- Filter by Price -->
             <div class="col mb-3" style="margin-top: 20px;">
                 <label for="priceRange" class="form-label">Filtrer par prix</label>
                 <div class="input-group">
@@ -22,6 +24,7 @@
                 </div>
             </div>
 
+            <!-- Filter by City -->
             <div class="col mb-3" style="margin-top: 20px;">
                 <label for="villeSelect" class="form-label">Filtrer par Ville</label>
                 <select id="villeSelect" class="form-select" onchange="filterCards()">
@@ -32,6 +35,7 @@
                 </select>
             </div>
 
+            <!-- Filter by Availability -->
             <div class="col mb-3" style="margin-top: 20px;">
                 <label for="dispoSelect" class="form-label">Filtrer par Disponibilité</label>
                 <div>
@@ -48,38 +52,39 @@
 
     <section class="h-100 gradient-custom-2 row">
         @foreach($infos as $info)
-            <div class="card" style="width: 18rem; margin: 30px;" data-category="{{ $info['catégorie'] }}">
-                <div id="carouselExampleIndicators{{ $info['id'] }}" class="carousel slide">
-                    <div class="carousel-inner">
-                        @if(is_array($info['images']) && count($info['images']) > 0)
-                        @foreach($info['images'] as $index => $image)
-                            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                                <img src="{{ asset($image) }}" class="d-block w-100" alt="...">
-                            </div>
-                        @endforeach
-                        @endif
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators{{ $info['id'] }}" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Précédent</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators{{ $info['id'] }}" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Suivant</span>
-                    </button>
+        <div class="card" style="width: 18rem; margin: 30px;" data-category="{{ $info->categorie_id }}">
+            <div id="carouselExampleIndicators{{ $info->id }}" class="carousel slide">
+                <div class="carousel-inner">
+                    @php
+                        $images = explode(',', $info->image_urls);
+                    @endphp
+                    @foreach($images as $index => $image)
+                        <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                            <img src="{{ asset('storage/' . $image) }}" class="d-block w-100" alt="Image {{ $index + 1 }}">
+                        </div>
+                    @endforeach
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title" style="display: inline;">{{ $info['tilte'] }}</h5>
-                    <p class="card-text Ville_Secteur">{{ $info['vile'] }}/{{ $info['secteur'] }}</p>
-                    <div style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center;">
-                        <div style="border-radius: 50%; width: 10px; height: 10px; background-color: {{ $info['dispnibliter'] === 'true' ? 'green' : 'red' }}; margin-right: 5px;"></div>
-                        <p class="card-text dispo" style="color: {{ $info['dispnibliter'] === 'true' ? 'green' : 'red' }}; margin: 0; font-size: 12px;">{{ $info['dispnibliter'] === 'true' ? 'Disponible' : 'Indisponible' }}</p>
-                    </div>
-                    <p class="card-text">{{ $info['description'] }}</p>
-                    <p class="card-text price">Prix: {{ $info['prix'] }} {{ $info['devis'] }}/{{ $info['temps'] }}</p>
-                    <a href="{{ route('announcement.show', ['announcement' => $info['id']])}}"  class="btn btn-primary">Plus d'informations</a>
-                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators{{ $info->id }}" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Précédent</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators{{ $info->id }}" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Suivant</span>
+                </button>
             </div>
+            <div class="card-body">
+                <h5 class="card-title" style="display: inline;">{{ $info->title }}</h5>
+                <p class="card-text Ville_Secteur">{{ $info->city }}/{{ $info->sector }}</p>
+                <div style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center;">
+                    <div style="border-radius: 50%; width: 10px; height: 10px; background-color: {{ $info->disponibilite === 'true' ? 'green' : 'red' }}; margin-right: 5px;"></div>
+                    <p class="card-text dispo" style="color: {{ $info->disponibilite === 'true' ? 'green' : 'red' }}; margin: 0; font-size: 12px;">{{ $info->disponibilite === 'true' ? 'Disponible' : 'Indisponible' }}</p>
+                </div>
+                <p class="card-text">{{ $info->description }}</p>
+                <p class="card-text price">Prix: {{ $info->price }} {{ $info->devis }}/{{ $info->unit_time}}</p>
+                <a href="{{ route('announcement.show', ['announcement' => $info->id]) }}" class="btn btn-primary">Plus d'informations</a>
+            </div>
+        </div>
         @endforeach
     </section>
 @endsection

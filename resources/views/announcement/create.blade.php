@@ -2,7 +2,7 @@
 @section('title', 'Créer une Annonce')
 @section('content')
     <section style="margin-top:100px;padding:0">
-        <form class="was-validated" action="{{route('announcement.store')}}" method="post">
+        <form class="was-validated" action="{{route('announcement.store')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="categorySelect" class="form-label">Select a Category</label>
@@ -87,57 +87,37 @@
 
             <div class="container">
                 <div class="row">
-                    <div class="col">
-                        <div class="mb-4 d-flex justify-content-center">
-                            <img id="selectedImage1" src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
-                            alt="exemple de placeholder" style="width: 200px;" />
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            <div data-mdb-ripple-init class="btn" style="background-color: #ff3d00; color: white; border-radius: 0.25rem;">
-                                <label class="form-label m-1" for="customFile1">Choisir un fichier</label>
-                                <input type="file" class="form-control d-none" id="customFile1" name="image_urls[]" onchange="displaySelectedImage(event, 'selectedImage1')" />
+                    @for ($i = 1; $i <= 4; $i++)
+                        <div class="col">
+                            <div class="mb-4 d-flex justify-content-center">
+                                <img id="selectedImage{{ $i }}" src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
+                                alt="exemple de placeholder" style="width: 200px;" />
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <div class="btn" style="background-color: #ff3d00; color: white; border-radius: 0.25rem;">
+                                    <label class="form-label m-1" for="customFile{{ $i }}">Choisir un fichier</label>
+                                    <input type="file" class="form-control d-none" id="customFile{{ $i }}" name="image_urls[]" onchange="displaySelectedImage(event, 'selectedImage{{ $i }}')" />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="mb-4 d-flex justify-content-center">
-                            <img id="selectedImage2" src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
-                            alt="exemple de placeholder" style="width: 200px;" />
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            <div data-mdb-ripple-init class="btn" style="background-color: #ff3d00; color: white; border-radius: 0.25rem;">
-                                <label class="form-label m-1" for="customFile2">Choisir un fichier</label>
-                                <input type="file" class="form-control d-none" id="customFile2" name="image_urls[]" onchange="displaySelectedImage(event, 'selectedImage2')" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="mb-4 d-flex justify-content-center">
-                            <img id="selectedImage3" src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
-                            alt="exemple de placeholder" style="width: 200px;" />
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            <div data-mdb-ripple-init class="btn" style="background-color: #ff3d00; color: white; border-radius: 0.25rem;">
-                                <label class="form-label m-1" for="customFile3">Choisir un fichier</label>
-                                <input type="file" class="form-control d-none" id="customFile3" name="image_urls[]" onchange="displaySelectedImage(event, 'selectedImage3')" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="mb-4 d-flex justify-content-center">
-                            <img id="selectedImage4" src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
-                            alt="exemple de placeholder" style="width: 200px;" />
-                        </div>
-                        <div class="d-flex justify-content-center">
-                            <div data-mdb-ripple-init class="btn" style="background-color: #ff3d00; color: white; border-radius: 0.25rem;">
-                                <label class="form-label m-1" for="customFile4">Choisir un fichier</label>
-                                <input type="file" class="form-control d-none" id="customFile4" name="image_urls[]" onchange="displaySelectedImage(event, 'selectedImage4')" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    @endfor
             </div>
+            </div>
+            <script>
+                function displaySelectedImage(event, imageId) {
+                    const file = event.target.files[0];
+                    const reader = new FileReader();
 
+                    reader.onload = function(e) {
+                        const img = document.getElementById(imageId);
+                        img.src = e.target.result;
+                    }
+
+                    if (file) {
+                        reader.readAsDataURL(file);
+                    }
+                }
+            </script>
             <div class="mb-4 text-center">
                 <button class="btn btn-success btn-lg" type="submit" id="submitButton" disabled style="margin-top: 40px; width: 100%;">Soumettre le formulaire</button>
             </div>

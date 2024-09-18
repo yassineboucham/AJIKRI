@@ -11,7 +11,7 @@ class AnnouncementController extends Controller
     public function AnnouncementInfo()
     {
         return [
-            ['id' => 1,
+            ['id' => 7,
              'catégorie' => 'vehicle',
              'options' => 'voiture',
              'tilte' => 'Renault Clio Diesel Automatique 2018',
@@ -66,6 +66,18 @@ class AnnouncementController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'image_urls.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $imagePaths = [];
+        if ($request->hasFile('image_urls')) {
+            foreach ($request->file('image_urls') as $file) {
+                $path = $file->store('images', 'public');
+                $imagePaths[] = $path;
+            }
+        }
+
         $announcement = new Announce();
         $announcement->categorie_id = $request->input('categorie_id');
         $announcement->type_id = $request->input('type_id');
@@ -78,25 +90,25 @@ class AnnouncementController extends Controller
         $announcement->max_time = $request->input('max_time');
         $announcement->city = $request->input('city');
         $announcement->sector = $request->input('sector');
-        $announcement->image_urls = implode(',', $request->input('image_urls'));
-        $announcement->user_id = 1;
+        $announcement->image_urls = implode(',', $imagePaths);
+        $announcement->user_id = 1;  // Assuming authenticated user
         $announcement->availability = true;
         $announcement->save();
 
         return redirect()->route('announcement.index');
     }
 
-public function show($id)
-{
-    $infos = self::AnnouncementInfo();
-    $index = array_search($id, array_column($infos, 'id'));
-
-    if ($index !== false) {
-        return view('announcement.show', ['info' => $infos[$index]]);
-    } else {
-        return abort(404, 'Announcement not found');
+    // Show a specific announcement
+    public function show($id)
+    {
+        $announcement = Announce::find($id);
+        if ($announcement) {
+            return view('announcement.show', ['info' => $announcement]);
+        } else {
+            return abort(404, 'Announcement not found');
+        }
     }
-}
+
 
 
     public function edit($id)
