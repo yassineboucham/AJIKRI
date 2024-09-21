@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Announce;
 
 class AnnouncesController extends Controller
 {
     public function announces()
     {
-        return view('announces');
+        return view('announces', ['infos' => Announce::all()]);
     }
 
     public function create()

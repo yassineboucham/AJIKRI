@@ -7,43 +7,6 @@ use App\Models\Announce;
 
 class AnnouncementController extends Controller
 {
-    //data for the Announcement page
-    public function AnnouncementInfo()
-    {
-        return [
-            ['id' => 7,
-             'catégorie' => 'vehicle',
-             'options' => 'voiture',
-             'tilte' => 'Renault Clio Diesel Automatique 2018',
-             'vile' => 'Marrakech', 'secteur' => 'Tensift',
-             'map' => 'https://www.google.com/maps/@31.476238,-8.1709848,9z?entry=ttu&g_ep=EgoyMDI0MDkwOC4wIKXMDSoASAFQAw%3D%3D',
-             'description' => "Un exemple de texte rapide pour construire sur le titre de la carte et constituer l'essentiel du contenu de la carte.",
-             'prix' => '100',
-             'devis' => 'Dhs',
-             'temps' => 'jour',
-             'min_temps' => '2',
-             'max_temps' => '15',
-             'images' => ['images/slideshow1.png', 'images/voiture-dans-parking.jpg', 'images/slideshow1.png', 'images/voiture-dans-parking.jpg'],
-             'dispnibliter' => 'true',
-            ],
-
-            ['id' => 2,
-            'catégorie' => 'vehicle',
-            'options' => 'voiture',
-            'tilte' => 'Renault Clio Diesel Automatique 2020',
-            'vile' => 'Casa', 'secteur' => '2 Mars',
-            'map' => 'https://www.google.com/maps/@31.476238,-8.1709848,9z?entry=ttu&g_ep=EgoyMDI0MDkwOC4wIKXMDSoASAFQAw%3D%3D',
-            'description' => "Un exemple de texte rapide pour construire sur le titre de la carte et constituer l'essentiel du contenu de la carte.",
-            'prix' => '500',
-            'devis' => 'Dhs',
-            'temps' => 'jour',
-            'min_temps' => '5',
-            'max_temps' => '30',
-            'images' => ['images/slideshow1.png', 'images/voiture-dans-parking.jpg', 'images/slideshow1.png', 'images/voiture-dans-parking.jpg'],
-            'dispnibliter' => 'false',
-           ],
-        ];
-    }
     private static function categorie()
     {
         return [
@@ -92,7 +55,7 @@ class AnnouncementController extends Controller
         $announcement->sector = $request->input('sector');
         $announcement->image_urls = implode(',', $imagePaths);
         $announcement->user_id = 1;  // Assuming authenticated user
-        $announcement->availability = true;
+        $announcement->availability = 1;
         $announcement->save();
 
         return redirect()->route('announcement.index');
@@ -101,12 +64,9 @@ class AnnouncementController extends Controller
     // Show a specific announcement
     public function show($id)
     {
-        $announcement = Announce::find($id);
-        if ($announcement) {
-            return view('announcement.show', ['info' => $announcement]);
-        } else {
-            return abort(404, 'Announcement not found');
-        }
+        $info = Announce::with(['user', 'categorie'])->findOrFail($id);
+        return view('announcement.show', ['info' => $info]);
+
     }
 
 

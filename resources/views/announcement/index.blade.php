@@ -76,9 +76,9 @@
             <div class="card-body">
                 <h5 class="card-title" style="display: inline;">{{ $info->title }}</h5>
                 <p class="card-text Ville_Secteur">{{ $info->city }}/{{ $info->sector }}</p>
-                <div style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center;">
-                    <div style="border-radius: 50%; width: 10px; height: 10px; background-color: {{ $info->disponibilite === 'true' ? 'green' : 'red' }}; margin-right: 5px;"></div>
-                    <p class="card-text dispo" style="color: {{ $info->disponibilite === 'true' ? 'green' : 'red' }}; margin: 0; font-size: 12px;">{{ $info->disponibilite === 'true' ? 'Disponible' : 'Indisponible' }}</p>
+                <div style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center; background-color: rgba(7, 7, 7, 0.315);">
+                    <div style="border-radius: 50%; width: 10px; height: 10px; background-color: {{ $info->availability === 1 ? 'green' : 'red' }}; margin-right: 5px;"></div>
+                    <p class="card-text dispo" style="color: {{ $info->availability === 1 ? 'green' : 'red' }}; margin: 0; font-size: 12px;">{{ $info->availability === 1 ? 'Disponible' : 'Indisponible' }}</p>
                 </div>
                 <p class="card-text">{{ $info->description }}</p>
                 <p class="card-text price">Prix: {{ $info->price }} {{ $info->devis }}/{{ $info->unit_time}}</p>

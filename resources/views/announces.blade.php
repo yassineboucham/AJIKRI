@@ -1,8 +1,9 @@
 @extends('layout')
-@section('title', 'Announces')
+@section('title', 'Annonce')
 @section('content')
-    <section class="container  mb-3" style="margin-top: 100px;">
+    <section class="container mb-3" style="margin-top: 100px;">
         <div class="row">
+            <!-- Filter by Category -->
             <div class="col mb-3" style="margin-top: 20px;">
                 <label for="filterSelect" class="form-label">Filtrer par catégorie</label>
                 <select class="form-select" id="filterSelect" onchange="filterCards()">
@@ -14,6 +15,7 @@
                 </select>
             </div>
 
+            <!-- Filter by Price -->
             <div class="col mb-3" style="margin-top: 20px;">
                 <label for="priceRange" class="form-label">Filtrer par prix</label>
                 <div class="input-group">
@@ -22,6 +24,7 @@
                 </div>
             </div>
 
+            <!-- Filter by City -->
             <div class="col mb-3" style="margin-top: 20px;">
                 <label for="villeSelect" class="form-label">Filtrer par Ville</label>
                 <select id="villeSelect" class="form-select" onchange="filterCards()">
@@ -32,6 +35,7 @@
                 </select>
             </div>
 
+            <!-- Filter by Availability -->
             <div class="col mb-3" style="margin-top: 20px;">
                 <label for="dispoSelect" class="form-label">Filtrer par Disponibilité</label>
                 <div>
@@ -43,283 +47,54 @@
                     <label for="dispoIndisponible" style="font-size: 12px;">Indisponible</label>
                 </div>
             </div>
-
         </div>
-
     </section>
 
-    <section class="h-100 gradient-custom-2 row" >
-        <div class="card" style="width: 18rem; margin: 30px;" data-category="vehicle"
-             data-title="Card title vehicle"
-             data-price="100 Dhs/h"
-             data-ville="Marrakech/Tensift"
-             data-description="Some quick example text to build on the card title and make up the bulk of the card's content."
-             data-images='["{{ asset('images/img2.jpg') }}", "{{ asset('images/slideshow1.png') }}", "{{ asset('images/voiture-dans-parking.jpg') }}", "{{ asset('images/signin-bg.jpeg') }}"]'>
-            <div id="carouselExampleIndicators" class="carousel slide">
-                <div class="carousel-indicators">
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                </div>
+    <section class="h-100 gradient-custom-2 row">
+        @foreach($infos as $info)
+        <div class="card" style="width: 18rem; margin: 30px;" data-category="{{ $info->categorie_id }}">
+            <div id="carouselExampleIndicators{{ $info->id }}" class="carousel slide">
                 <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="{{ asset('images/img2.jpg') }}" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="{{ asset('images/slideshow1.png') }}" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="{{ asset('images/voiture-dans-parking.jpg') }}" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="{{ asset('images/signin-bg.jpeg') }}" class="d-block w-100" alt="...">
-                  </div>
+                    @php
+                        $images = explode(',', $info->image_urls);
+                    @endphp
+                    @foreach($images as $index => $image)
+                        <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                            <img src="{{ asset('storage/' . $image) }}" class="d-block w-100" alt="Image {{ $index + 1 }}">
+                        </div>
+                    @endforeach
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators{{ $info->id }}" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Précédent</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators{{ $info->id }}" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Suivant</span>
                 </button>
-              </div>
+            </div>
             <div class="card-body">
-              <h5 class="card-title" style="display: inline;">Card title vehicle</h5>
-              <p class="card-text Ville_Secteur">Marrakech/Tensift</p>
-              <div style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center; margin-right: 5px;">
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" onchange="updateAvailability(this)" checked>
-                    <label class="form-check-label dispo" style="color: green;">Disponible</label>
+                <h5 class="card-title" style="display: inline;">{{ $info->title }}</h5>
+                <p class="card-text Ville_Secteur">{{ $info->city }}/{{ $info->sector }}</p>
+                <div style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center; background-color: rgba(7, 7, 7, 0.315);">
+                    <div style="border-radius: 50%; width: 10px; height: 10px; background-color: {{ $info->availability === 1 ? 'green' : 'red' }}; margin-right: 5px;"></div>
+                    <p class="card-text dispo" style="color: {{ $info->availability === 1 ? 'green' : 'red' }}; margin: 0; font-size: 12px;">{{ $info->availability === 1 ? 'Disponible' : 'Indisponible' }}</p>
                 </div>
+                <p class="card-text">{{ $info->description }}</p>
+                <p class="card-text price">Prix: {{ $info->price }} {{ $info->devis }}/{{ $info->unit_time}}</p>
+                <a href="{{ route('announcement.show', ['announcement' => $info->id]) }}" class="btn btn-primary">Plus d'informations</a>
+                <div class="button-group" style="margin-top: 10px;">
+                    <button class="btn btn-danger" onclick="deleteCard(this)">Supprimer</button>
+                    <button class="btn btn-warning" onclick="editCard(this)">Modifier</button>
+                </div> 
             </div>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <p class="card-text price">Prix: 100 Dhs/h</p>
-              <a href="{{ route('moreinfo') }}" class="btn btn-primary">Plus d'informations</a>
-            <div class="button-group" style="margin-top: 10px;">
-                <button class="btn btn-danger" onclick="deleteCard(this)">Supprimer</button>
-                <button class="btn btn-warning" onclick="editCard(this)">Modifier</button>
-            </div>
-            </div>
-          </div>
-
-          {{-- 1.1 --}}
-
-        <div class="card" style="width: 18rem; margin: 30px;" data-category="vehicle"
-             data-title="Card title vehicle"
-             data-price="500 Dhs/h"
-             data-ville="Tanger/Achakar"
-             data-description="Some quick example text to build on the card title and make up the bulk of the card's content."
-             data-images='["{{ asset('images/img2.jpg') }}", "{{ asset('images/slideshow1.png') }}", "{{ asset('images/voiture-dans-parking.jpg') }}", "{{ asset('images/signin-bg.jpeg') }}"]'>
-            <div id="carouselExampleIndicators" class="carousel slide">
-                <div class="carousel-indicators">
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                </div>
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="{{ asset('images/img2.jpg') }}" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="{{ asset('images/slideshow1.png') }}" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="{{ asset('images/voiture-dans-parking.jpg') }}" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="{{ asset('images/signin-bg.jpeg') }}" class="d-block w-100" alt="...">
-                  </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>
-            <div class="card-body">
-              <h5 class="card-title" style="display: inline;">Card title vehicle</h5>
-              <p class="card-text Ville_Secteur">Tanger/Achakar</p>
-              <div style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center; margin-right: 5px;">
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked1" onchange="updateAvailability(this)" checked>
-                    <label class="form-check-label dispo" style="color: green;">Disponible</label>
-                </div>
-            </div>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <p class="card-text price">Prix: 500 Dhs/h</p>
-              <a href="{{ route('moreinfo') }}" class="btn btn-primary">Plus d'informations</a>
-              <div class="button-group" style="margin-top: 10px;">
-                <button class="btn btn-danger" onclick="deleteCard(this)">Supprimer</button>
-                <button class="btn btn-warning" onclick="editCard(this)">Modifier</button>
-               </div>
-            </div>
-          </div>
-
-          {{-- 2 --}}
-
-          <div class="card" style="width: 18rem; margin: 30px;" data-category="moto"
-               data-title="Card title moto"
-               data-price="1300 Dhs/h"
-               data-ville="Marrakech/Tensift"
-               data-description="Some quick example text to build on the card title and make up the bulk of the card's content."
-               data-images='["{{ asset('images/img2.jpg') }}", "{{ asset('images/slideshow1.png') }}", "{{ asset('images/voiture-dans-parking.jpg') }}", "{{ asset('images/signin-bg.jpeg') }}"]'>
-            <div id="carouselExampleIndicators1" class="carousel slide">
-                <div class="carousel-indicators">
-                  <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                </div>
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="{{ asset('images/img2.jpg') }}" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="{{ asset('images/slideshow1.png') }}" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="{{ asset('images/voiture-dans-parking.jpg') }}" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="{{ asset('images/signin-bg.jpeg') }}" class="d-block w-100" alt="...">
-                  </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators1" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>
-            <div class="card-body">
-              <h5 class="card-title" style="display: inline;">Card title moto</h5>
-              <p class="card-text Ville_Secteur">Marrakech/Tensift</p>
-              <div style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center; margin-right: 5px;">
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked2" onchange="updateAvailability(this)" checked>
-                    <label class="form-check-label dispo" style="color: green;">Disponible</label>
-                </div>
-            </div>
-
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <p class="card-text price">Prix: 1300 Dhs/h</p>
-              <a href="{{ route('moreinfo') }}" class="btn btn-primary">Plus d'informations</a>
-              <div class="button-group" style="margin-top: 10px;">
-                <button class="btn btn-danger" onclick="deleteCard(this)">Supprimer</button>
-                <button class="btn btn-warning" onclick="editCard(this)">Modifier</button>
-            </div>
-            </div>
-          </div>
-
-          {{-- 3 --}}
-
-
-          {{-- 4 --}}
-
-          <div class="card" style="width: 18rem; margin: 30px;" data-category="maison"
-               data-title="Card title maison"
-               data-price="10000 Dhs/h"
-               data-ville="Marrakech/Tensift"
-               data-description="Some quick example text to build on the card title and make up the bulk of the card's content."
-               data-images='["{{ asset('images/img2.jpg') }}", "{{ asset('images/slideshow1.png') }}", "{{ asset('images/voiture-dans-parking.jpg') }}", "{{ asset('images/signin-bg.jpeg') }}"]'>
-            <div id="carouselExampleIndicators4" class="carousel slide">
-                <div class="carousel-indicators">
-                  <button type="button" data-bs-target="#carouselExampleIndicators4" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators4" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators4" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                  <button type="button" data-bs-target="#carouselExampleIndicators4" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                </div>
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="{{ asset('images/img2.jpg') }}" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="{{ asset('images/slideshow1.png') }}" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="{{ asset('images/voiture-dans-parking.jpg') }}" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img src="{{ asset('images/signin-bg.jpeg') }}" class="d-block w-100" alt="...">
-                  </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators4" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators4" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>
-            <div class="card-body">
-              <h5 class="card-title" style="display: inline;">Card title maison</h5>
-              <p class="card-text Ville_Secteur">Marrakech/Tensift</p>
-              <div style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center; margin-right: 5px;">
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked4" onchange="updateAvailability(this)" checked>
-                    <label class="form-check-label dispo" style="color: green;">Disponible</label>
-                </div>
-            </div>
-
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <p class="card-text price">Prix: 10000 Dhs/h</p>
-              <a href="{{ route('moreinfo') }}" class="btn btn-primary">Plus d'informations</a>
-              <div class="button-group" style="margin-top: 10px;">
-                <button class="btn btn-danger" onclick="deleteCard(this)">Supprimer</button>
-                <button class="btn btn-warning" onclick="editCard(this)">Modifier</button>
-            </div>
-            </div>
-          </div>
+        </div>
+        @endforeach
     </section>
-
-
-  </div>
-
-
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
-    integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
-    crossorigin="anonymous"></script>
-  <script src="{{ asset('/js/slideshow.js') }}"></script>
-  <script src="{{ asset('/js/announce.js') }}"></script>
-  <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
-  <script>
-  function editCard(button) {
-      const card = button.closest('.card');
-      const title = card.getAttribute('data-title');
-      const price = card.getAttribute('data-price');
-      const ville = card.getAttribute('data-ville');
-      const description = card.getAttribute('data-description');
-      const images = JSON.parse(card.getAttribute('data-images'));
-
-      const form = document.createElement('form');
-      form.method = 'POST';
-      form.action = '{{ route('editannounce') }}';
-
-      form.innerHTML = `
-          @csrf
-          <input type="hidden" name="title" value="${title}">
-          <input type="hidden" name="price" value="${price}">
-          <input type="hidden" name="ville" value="${ville}">
-          <input type="hidden" name="description" value="${description}">
-          <input type="hidden" name="images" value='${JSON.stringify(images)}'>
-      `;
-
-      document.body.appendChild(form);
-      form.submit();
-  }
-  </script>
 @endsection
+
+
+{{-- <div class="button-group" style="margin-top: 10px;">
+    <button class="btn btn-danger" onclick="deleteCard(this)">Supprimer</button>
+    <button class="btn btn-warning" onclick="editCard(this)">Modifier</button>
+</div> --}}
