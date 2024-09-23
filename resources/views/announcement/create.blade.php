@@ -7,7 +7,6 @@
             <div class="mb-3">
                 <label for="categorySelect" class="form-label">Select a Category</label>
                 <select class="form-select" id="categorySelect" name="categorie_id" >
-                    <option value="">Select a category</option>
                     @foreach($categories as $category)
                         <option value="{{ $category['id'] }}">{{ $category['catégorie'] }}</option>
                     @endforeach
@@ -122,5 +121,6 @@
                 <button class="btn btn-success btn-lg" type="submit" id="submitButton" disabled style="margin-top: 40px; width: 100%;">Soumettre le formulaire</button>
             </div>
         </form>
+        <script src="{{ asset('/js/create.js') }}"></script>
     </section>
 @endsection

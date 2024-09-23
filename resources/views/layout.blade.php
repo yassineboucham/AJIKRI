@@ -67,7 +67,6 @@
     crossorigin="anonymous"></script>
   <script src="{{ asset('/js/slideshow.js') }}"></script>
   <script src="{{ asset('/js/announce.js') }}"></script>
-  <script src="{{ asset('/js/create.js') }}"></script>
   <script src="{{ asset('/js/moreinfo.js') }}"></script>
   <script src="https://kit.fontawesome.com/your-kit-id.js" crossorigin="anonymous"></script>
 

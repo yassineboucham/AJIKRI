@@ -85,8 +85,8 @@
                 <a href="{{ route('announcement.show', ['announcement' => $info->id]) }}" class="btn btn-primary">Plus d'informations</a>
                 <div class="button-group" style="margin-top: 10px;">
                     <button class="btn btn-danger" onclick="deleteCard(this)">Supprimer</button>
-                    <button class="btn btn-warning" onclick="editCard(this)">Modifier</button>
-                </div> 
+                    <a href="{{ route('announcement.edit', ['announcement' => $info->id]) }}" class="btn btn-warning">Modifier</a>
+                </div>
             </div>
         </div>
         @endforeach

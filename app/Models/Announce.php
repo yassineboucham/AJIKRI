@@ -20,6 +20,11 @@ class Announce extends Model
         return $this->belongsTo(Categorie::class, 'categorie_id', 'categorie_id');
     }
 
+    public function type()
+    {
+        return $this->belongsTo(Type::class, 'type_id', 'type_id');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
