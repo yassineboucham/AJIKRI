@@ -12,6 +12,16 @@ class AnnouncesController extends Controller
         return view('announces', ['infos' => Announce::all()]);
     }
 
+    public function updateAvailability(Request $request, $id)
+    {
+        $announce = Announce::findOrFail($id);
+        $announce->availability = $request->input('availability');
+        $announce->save();
+
+        return response()->json(['message' => 'Availability updated successfully!']);
+    }
+
+
     public function create()
     {
         //
@@ -39,6 +49,6 @@ class AnnouncesController extends Controller
 
     public function destroy($id)
     {
-        // Delete the announce
+
     }
 }

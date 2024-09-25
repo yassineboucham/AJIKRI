@@ -65,7 +65,7 @@ class AnnouncementController extends Controller
         $announcement->city = strip_tags($request->input('city'));
         $announcement->sector = strip_tags($request->input('sector'));
         $announcement->image_urls = implode(',', $imagePaths);
-        $announcement->user_id = 1;  // Assuming authenticated user
+        $announcement->user_id = auth()->id();
         $announcement->availability = 1;
         $announcement->save();
 
@@ -77,7 +77,6 @@ class AnnouncementController extends Controller
     {
         $info = Announce::with(['user', 'categorie'])->findOrFail($id);
         return view('announcement.show', ['info' => $info]);
-
     }
 
 
@@ -112,19 +111,29 @@ class AnnouncementController extends Controller
         // Retrieve the existing announcement
         $to_update = Announce::with('categorie', 'type')->findOrFail($id);
 
-        // Handle image uploads
-        $imagePaths = [];
         if ($request->hasFile('image_urls')) {
-            foreach ($request->file('image_urls') as $file) {
-                $path = $file->store('images', 'public');
-                $imagePaths[] = $path;
-            }
-            // Append new images to existing ones
+            // Get the existing images from the database
             $existingImages = $to_update->image_urls ? explode(',', $to_update->image_urls) : [];
-            $to_update->image_urls = implode(',', array_merge($existingImages, $imagePaths));
+
+            // Iterate over the uploaded images, replacing only the specified ones
+            foreach ($request->file('image_urls') as $index => $file) {
+                // If there's an existing image at this index, delete it first
+                if (isset($existingImages[$index])) {
+                    if (\Storage::disk('public')->exists($existingImages[$index])) {
+                        \Storage::disk('public')->delete($existingImages[$index]);
+                    }
+                }
+
+                // Store the new image and replace the corresponding index
+                $path = $file->store('images', 'public');
+                $existingImages[$index] = $path;
+            }
+
+            // Save the updated image URLs back to the database
+            $to_update->image_urls = implode(',', $existingImages);
         }
 
-        // Update the announcement fields
+        // Update the other fields
         $to_update->categorie_id = strip_tags($request->input('categorie_id'));
         $to_update->type_id = strip_tags($request->input('type_id'));
         $to_update->title = strip_tags($request->input('title'));
@@ -140,14 +149,16 @@ class AnnouncementController extends Controller
         // Save the updated announcement
         $to_update->save();
 
-        // Redirect to the announcements page
+        // Redirect to the announcements page with a success message
         return redirect()->route('announces')->with('success', 'Announcement updated successfully!');
-    }
 
+    }
 
     public function destroy($id)
     {
-        // Delete the singup
+        $to_delete = Announce::with('categorie')->findOrFail($id);
+        $to_delete->delete();
+        return redirect()->route('announces')->with('success', 'Announcement delet successfully!');
     }
 
 }

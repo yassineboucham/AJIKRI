@@ -28,9 +28,16 @@
     </label>
     <input type="checkbox" id="toggle">
     <div class="toggle-menu">
-      <a href="{{ url('/') }}">Accueil</a>
-      <a href="{{ route('login') }}">Se connecter</a>
-      <a href="{{ route('singup') }}">S'inscrire</a>
+        <a href="{{ url('/') }}">Acceuil</a>
+        @auth
+        <a href="{{ route('account') }}">Profile</a>
+        <a href="{{ route('announces') }}">Votre annonces</a>
+        <a href="{{ route('announcement.create') }}">Postez une annonce</a>
+        <a href="{{ route('announcement.index') }}">Chercher une annonce</a>
+        @else
+        <a href="{{ route('login') }}">Se connecter</a>
+        <a href="{{ route('register') }}">S'inscrire</a>
+        @endauth
     </div>
     <nav>
       <div class="mobile-menu"></div>
@@ -51,7 +58,11 @@
         <div id="text">Le 1er site au Maroc</div>
         <a class="bottom-btn" href="#categorie"><i class="fa-solid fa-circle-chevron-down"></i></a>
         <div class="service">
+        @auth
           <a href="{{ route('announcement.create') }}" class="postez-btn">Postez une annonce</a>
+          @else
+          <a href="{{ route('login') }}" class="postez-btn">Postez une annonce</a>
+        @endauth
           <a href="{{ url('announcement') }}" class="chercher-btn">Chercher une annonce</a>
         </div>
       </div>

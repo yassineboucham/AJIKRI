@@ -1,40 +1,24 @@
-function filterCards() {
-    const filterValue = document.getElementById('filterSelect').value;
-    const minPrice = parseFloat(document.getElementById('minPrice').value) || 0;
-    const maxPrice = parseFloat(document.getElementById('maxPrice').value) || Infinity;
-    const ville = document.getElementById('villeSelect').value;
-    const dispo = document.querySelector('input[name="dispoSelect"]:checked').value;
-    const cards = document.querySelectorAll('.card');
+function toggleAvailability(checkbox) {
+    let announcementId = checkbox.getAttribute('data-id');
+    let availability = checkbox.checked ? 1 : 0;
 
-    cards.forEach(card => {
-        const category = card.getAttribute('data-category');
-        const priceText = card.querySelector('.price').textContent;
-        const priceMatch = priceText.match(/Prix:\s*(\d+)\s*Dhs/);
-        const price = priceMatch ? parseFloat(priceMatch[1]) : 0;
-        const villeSecteurText = card.querySelector('.Ville_Secteur').textContent;
-        const isVilleVisible = ville === "" || villeSecteurText.startsWith(ville);
-        const isDispoVisible = (dispo === "all") ||
-                            (dispo === "disponible" && card.querySelector('.dispo').textContent.includes("Disponible")) ||
-                            (dispo === "indisponible" && card.querySelector('.dispo').textContent.includes("Indisponible"));
+    // Send AJAX request to update availability
+    fetch(`/announcement/${announcementId}/availability`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify({ availability: availability })
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Update the label color and text
+        const label = checkbox.nextElementSibling;
+        label.textContent = availability ? 'Disponible' : 'Non disponible';
+        label.style.color = availability ? 'green' : 'red';
 
-        if ((filterValue === "" || category === filterValue) &&
-            (price >= minPrice && price <= maxPrice) &&
-            isVilleVisible &&
-            isDispoVisible) {
-            card.style.display = "block";
-        } else {
-            card.style.display = "none";
-        }
-    });
+        console.log(data.message);
+    })
+    .catch(error => console.error('Error:', error));
 }
-
-    function updateAvailability(checkbox) {
-      const label = checkbox.nextElementSibling;
-      if (checkbox.checked) {
-        label.textContent = 'Disponible';
-        label.style.color = 'green';
-      } else {
-        label.textContent = 'Indisponible';
-        label.style.color = 'red';
-    }
-  }

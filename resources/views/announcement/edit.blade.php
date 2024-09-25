@@ -102,7 +102,8 @@
                             <div class="d-flex justify-content-center">
                                 <div class="btn" style="background-color: #ff3d00; color: white; border-radius: 0.25rem;">
                                     <label class="form-label m-1" for="customFile{{ $index + 1 }}">Choisir un fichier</label>
-                                    <input type="file" class="form-control d-none" id="customFile{{ $index + 1 }}" name="image_urls[]" onchange="displaySelectedImage(event, 'selectedImage{{ $index + 1 }}')" />
+                                    <!-- Add hidden input to track which image index is being replaced -->
+                                    <input type="file" class="form-control d-none" id="customFile{{ $index + 1 }}" name="image_urls[{{ $index }}]" onchange="displaySelectedImage(event, 'selectedImage{{ $index + 1 }}')" />
                                 </div>
                             </div>
                         </div>

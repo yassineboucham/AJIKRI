@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
     integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -36,12 +37,16 @@
     </label>
     <input type="checkbox" id="toggle">
     <div class="toggle-menu">
-
-
-      <a href="{{ url('/') }}">Acceuil</a>
-      <a href="{{ route('login') }}">Se connecter</a>
-      <a href="{{ route('singup') }}">S'inscrire</a>
-
+        <a href="{{ url('/') }}">Acceuil</a>
+        @auth
+        <a href="{{ route('account') }}">Profile</a>
+        <a href="{{ route('announces') }}">Votre annonces</a>
+        <a href="{{ route('announcement.create') }}">Postez une annonce</a>
+        <a href="{{ route('announcement.index') }}">Chercher une annonce</a>
+        @else
+        <a href="{{ route('login') }}">Se connecter</a>
+        <a href="{{ route('register') }}">S'inscrire</a>
+        @endauth
     </div>
     <nav>
       <div class="mobile-menu"></div>

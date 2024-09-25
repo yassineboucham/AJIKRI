@@ -77,14 +77,32 @@
                 <h5 class="card-title" style="display: inline;">{{ $info->title }}</h5>
                 <p class="card-text Ville_Secteur">{{ $info->city }}/{{ $info->sector }}</p>
                 <div style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center; background-color: rgba(7, 7, 7, 0.315);">
-                    <div style="border-radius: 50%; width: 10px; height: 10px; background-color: {{ $info->availability === 1 ? 'green' : 'red' }}; margin-right: 5px;"></div>
-                    <p class="card-text dispo" style="color: {{ $info->availability === 1 ? 'green' : 'red' }}; margin: 0; font-size: 12px;">{{ $info->availability === 1 ? 'Disponible' : 'Indisponible' }}</p>
+                    <div class="form-check form-switch">
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            id="flexSwitchCheckChecked{{ $info->id }}"
+                            data-id="{{ $info->id }}"
+                            {{ $info->availability == 1 ? 'checked' : '' }}
+                            onchange="toggleAvailability(this)">
+                        <label class="form-check-label dispo" style="color: {{ $info->availability == 1 ? 'green' : 'red' }};">
+                            {{ $info->availability == 1 ? 'Disponible' : 'Non disponible' }}
+                        </label>
+                    </div>
+
+                    {{-- <div style="border-radius: 50%; width: 10px; height: 10px; background-color: {{ $info->availability === 1 ? 'green' : 'red' }}; margin-right: 5px;"></div>
+                    <p class="card-text dispo" style="color: {{ $info->availability === 1 ? 'green' : 'red' }}; margin: 0; font-size: 12px;">{{ $info->availability === 1 ? 'Disponible' : 'Indisponible' }}</p> --}}
                 </div>
                 <p class="card-text">{{ $info->description }}</p>
                 <p class="card-text price">Prix: {{ $info->price }} {{ $info->devis }}/{{ $info->unit_time}}</p>
                 <a href="{{ route('announcement.show', ['announcement' => $info->id]) }}" class="btn btn-primary">Plus d'informations</a>
                 <div class="button-group" style="margin-top: 10px;">
-                    <button class="btn btn-danger" onclick="deleteCard(this)">Supprimer</button>
+                    <form action="{{ route('announcement.destroy', $info->id) }}" method="POST" class="d-inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                    </form>
                     <a href="{{ route('announcement.edit', ['announcement' => $info->id]) }}" class="btn btn-warning">Modifier</a>
                 </div>
             </div>

@@ -67,8 +67,12 @@
                     <div class="collapse" id="collapseExample">
                         <div class="card card-body">
                             <ul class="list-group">
-                                <li class="list-group-item">Email: <a href="mailto:{{ $info->user->email }}">{{ $info->user->email }}</a></li>
-                                <li class="list-group-item">Phone: <a href="tel:{{ $info->user->phone_number}}">+1234567890</a></li>
+                                <li class="list-group-item">
+                                    Email: <a href="mailto:{{ $info->user->email }}">{{ $info->user->email }}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    Phone: <a href="tel:{{ $info->user->phone_number }}">{{ $info->user->phone_number }}</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
