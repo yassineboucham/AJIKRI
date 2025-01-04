@@ -44,9 +44,15 @@
       <div class="logo"><a href="{{ url('/') }}"><img src="{{ asset('images/logo_baner.png') }}" alt=""></a></div>
       <div class="account">
         <div>
-        <a href="{{ route('account') }}">
-            <i class="fa-solid fa-user"></i>
-        </a>
+            @auth
+            <a href="{{ route('account') }}">
+                <i class="fa-solid fa-user"></i>
+            </a>
+            @else
+            <a href="{{ route('login') }}">
+                <i class="fa-solid fa-user"></i>
+            </a>
+            @endauth
         </div>
       </div>
     </nav>
