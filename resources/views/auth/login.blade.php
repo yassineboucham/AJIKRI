@@ -47,6 +47,9 @@
                             </div>
                         </div>
                     </form>
+                    <div class="mt-4">
+                        <p class="mb-0">vous n avez pas de compte créez en un maintenant ! <a href={{ route('register') }} class="text-white-50 fw-bold">S'inscrire</a></p>
+                    </div>
                 </div>
             </div>
         </div>

@@ -139,6 +139,9 @@
                             </div>
                         </div>
                     </form>
+                    <div class="mt-4">
+                        <p class="mb-0">Vous avez déjà un compte ? <a href={{ route('login') }} class="text-white-50 fw-bold">Se connecter</a></p>
+                    </div>
                 </div>
             </div>
         </div>
