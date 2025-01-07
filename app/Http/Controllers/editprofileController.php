@@ -3,41 +3,59 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class EditProfileController extends Controller
 {
     public function editprofile()
     {
-        return view('editprofile');
-    }
+        // Get the currently authenticated user
+        $user = auth()->user();
 
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        // Store the new edit profile
-    }
-
-    public function show($id)
-    {
-        //
-    }
-
-    public function edit($id)
-    {
-        //
+        // Return the edit profile view with the user data
+        return view('editprofile', compact('user'));
     }
 
     public function update(Request $request, $id)
     {
-        // Update the edit profile
+        // Validate the incoming request data
+        $request->validate([
+            'agency_name' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
+            'phone_number' => 'required|string|max:15',
+            'address' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'password' => 'nullable|string|min:8|confirmed',
+            'bio' => 'nullable|string|max:500',
+        ]);
+
+        // Find the user by ID
+        $user = User::findOrFail($id);
+
+        // Update user data
+        $user->agency_name = $request->agency_name;
+        $user->name = $request->name;
+        $user->phone_number = $request->phone_number;
+        $user->address = $request->address;
+        $user->email = $request->email;
+
+        // Update password if provided
+        if ($request->filled('password')) {
+            $user->password = bcrypt($request->password);
+        }
+
+        $user->bio = $request->bio;
+        $user->save(); // Save the changes
+
+        return redirect()->route('editprofile')->with('success', 'Profile updated successfully.');
     }
 
     public function destroy($id)
     {
-        // Delete the edit profile
+        // Delete the user account
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('account')->with('success', 'Account deleted successfully.');
     }
 }
