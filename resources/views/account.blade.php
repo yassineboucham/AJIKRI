@@ -52,7 +52,7 @@
                       <p class="font-italic mb-1">{{ auth()->user()->address }}</p>
                     </div>
                   </div>
-                    <a href="{{ route('announces') }}" class="btn" style="background-color: #fc4331; color: white;">Voir toutes mes annonces</a>
+                    <a href="{{ route('announces', ['user' => auth()->user()->id]) }}" class="btn" style="background-color: #fc4331; color: white;">Voir toutes mes annonces</a>
                 </div>
               </div>
             </div>

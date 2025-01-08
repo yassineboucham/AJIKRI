@@ -52,61 +52,60 @@
 
     <section class="h-100 gradient-custom-2 row">
         @foreach($infos as $info)
-        <div class="card" style="width: 18rem; margin: 30px;" data-category="{{ $info->categorie_id }}">
-            <div id="carouselExampleIndicators{{ $info->id }}" class="carousel slide">
-                <div class="carousel-inner">
-                    @php
-                        $images = explode(',', $info->image_urls);
-                    @endphp
-                    @foreach($images as $index => $image)
-                        <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                            <img src="{{ asset('storage/' . $image) }}" class="d-block w-100" alt="Image {{ $index + 1 }}">
+            @if($info->user_id == auth()->user()->id)
+                <div class="card" style="width: 18rem; margin: 30px;" data-category="{{ $info->categorie_id }}">
+                    <div id="carouselExampleIndicators{{ $info->id }}" class="carousel slide">
+                        <div class="carousel-inner">
+                            @php
+                                $images = explode(',', $info->image_urls);
+                            @endphp
+                            @foreach($images as $index => $image)
+                                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                                    <img src="{{ asset('storage/' . $image) }}" class="d-block w-100" alt="Image {{ $index + 1 }}">
+                                </div>
+                            @endforeach
                         </div>
-                    @endforeach
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators{{ $info->id }}" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Précédent</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators{{ $info->id }}" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Suivant</span>
-                </button>
-            </div>
-            <div class="card-body">
-                <h5 class="card-title" style="display: inline;">{{ $info->title }}</h5>
-                <p class="card-text Ville_Secteur">{{ $info->city }}/{{ $info->sector }}</p>
-                <div style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center; background-color: rgba(7, 7, 7, 0.315);">
-                    <div class="form-check form-switch">
-                        <input
-                            class="form-check-input"
-                            type="checkbox"
-                            role="switch"
-                            id="flexSwitchCheckChecked{{ $info->id }}"
-                            data-id="{{ $info->id }}"
-                            {{ $info->availability == 1 ? 'checked' : '' }}
-                            onchange="toggleAvailability(this)">
-                        <label class="form-check-label dispo" style="color: {{ $info->availability == 1 ? 'green' : 'red' }};">
-                            {{ $info->availability == 1 ? 'Disponible' : 'Non disponible' }}
-                        </label>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators{{ $info->id }}" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Précédent</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators{{ $info->id }}" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Suivant</span>
+                        </button>
                     </div>
-
-                    {{-- <div style="border-radius: 50%; width: 10px; height: 10px; background-color: {{ $info->availability === 1 ? 'green' : 'red' }}; margin-right: 5px;"></div>
-                    <p class="card-text dispo" style="color: {{ $info->availability === 1 ? 'green' : 'red' }}; margin: 0; font-size: 12px;">{{ $info->availability === 1 ? 'Disponible' : 'Indisponible' }}</p> --}}
+                    <div class="card-body">
+                        <h5 class="card-title" style="display: inline;">{{ $info->title }}</h5>
+                        <p class="card-text Ville_Secteur">{{ $info->city }}/{{ $info->sector }}</p>
+                        <div style="position: absolute; top: 10px; right: 10px; display: inline-flex; align-items: center; background-color: rgba(7, 7, 7, 0.315);">
+                            <div class="form-check form-switch">
+                                <input
+                                    class="form-check-input"
+                                    type="checkbox"
+                                    role="switch"
+                                    id="flexSwitchCheckChecked{{ $info->id }}"
+                                    data-id="{{ $info->id }}"
+                                    {{ $info->availability == 1 ? 'checked' : '' }}
+                                    onchange="toggleAvailability(this)">
+                                <label class="form-check-label dispo" style="color: {{ $info->availability == 1 ? 'green' : 'red' }};">
+                                    {{ $info->availability == 1 ? 'Disponible' : 'Non disponible' }}
+                                </label>
+                            </div>
+                        </div>
+                        <p class="card-text">{{ $info->description }}</p>
+                        <p class="card-text price">Prix: {{ $info->price }} {{ $info->devis }}/{{ $info->unit_time}}</p>
+                        <a href="{{ route('announcement.show', ['announcement' => $info->id]) }}" class="btn btn-primary">Plus d'informations</a>
+                        <div class="button-group" style="margin-top: 10px;">
+                            <form action="{{ route('announcement.destroy', $info->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                            </form>
+                            <a href="{{ route('announcement.edit', ['announcement' => $info->id]) }}" class="btn btn-warning">Modifier</a>
+                        </div>
+                    </div>
                 </div>
-                <p class="card-text">{{ $info->description }}</p>
-                <p class="card-text price">Prix: {{ $info->price }} {{ $info->devis }}/{{ $info->unit_time}}</p>
-                <a href="{{ route('announcement.show', ['announcement' => $info->id]) }}" class="btn btn-primary">Plus d'informations</a>
-                <div class="button-group" style="margin-top: 10px;">
-                    <form action="{{ route('announcement.destroy', $info->id) }}" method="POST" class="d-inline">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Supprimer</button>
-                    </form>
-                    <a href="{{ route('announcement.edit', ['announcement' => $info->id]) }}" class="btn btn-warning">Modifier</a>
-                </div>
-            </div>
-        </div>
+            @endif
         @endforeach
     </section>
 @endsection
